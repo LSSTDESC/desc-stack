@@ -1,0 +1,88 @@
+FROM lsstdesc/stack-sims:w_2019_19-sims_w_2019_19
+MAINTAINER Heather Kelly <heather@slac.stanford.edu>
+
+ARG LSST_STACK_DIR=/opt/lsst/software/stack
+ARG LSST_USER=lsst
+ARG LSST_GROUP=lsst
+
+WORKDIR $LSST_STACK_DIR
+
+RUN echo "Environment: \n" && env | sort
+
+USER root
+RUN yum install -y libffi-devel
+USER lsst
+
+RUN echo "Installing DESC requested packages" && \
+    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+                  pip freeze > $LSST_STACK_DIR/require.txt; \
+                  conda install -y ipykernel jupyter_console; \
+                  pip install -c $LSST_STACK_DIR/require.txt camb; \
+                  pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
+                  pip install -c $LSST_STACK_DIR/require.txt fitsio; \
+                  pip install -c $LSST_STACK_DIR/require.txt healpy; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
+                  conda install -y markupsafe nose; \
+                  pip install -c $LSST_STACK_DIR/require.txt parsl==0.7.2; \
+                  export PYMSSQL_BUILD_WITH_BUNDLED_FREEETDS=1; \
+                  pip install -c $LSST_STACK_DIR/require.txt pymssql; \
+                  pip install -c $LSST_STACK_DIR/require.txt tables; \
+                  pip install -c $LSST_STACK_DIR/require.txt TreeCorr==4.0.8; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.3.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt corner; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
+                  pip install -c $LSST_STACK_DIR/require.txt scikit-image; \
+                  pip install -c $LSST_STACK_DIR/require.txt emcee; \
+                  pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
+                  pip install -c $LSST_STACK_DIR/require.txt extinction; \
+                  pip install -c $LSST_STACK_DIR/require.txt seaborn; \
+                  conda install -y cmake swig; \
+                  setup fftw; \
+                  setup gsl; \
+                  pip install -c $LSST_STACK_DIR/require.txt pyccl==1.0.0'
+
+RUN echo "Finish Installing fast3tree" && \
+    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+                 echo -e "from fast3tree.make_lib import make_lib\nmake_lib(3, True)\nmake_lib(3, False)\nmake_lib(2, True)\nmake_lib(2, False)" >> $LSST_STACK_DIR/stack/install_fast3tree.py; \
+                 python $LSST_STACK_DIR/stack/install_fast3tree.py'
+
+#RUN echo "Installing obs_lsst" && \
+#    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+#                 setup lsst_distrib; \
+#                 git clone https://github.com/lsst/obs_lsst.git; \
+#                 cd obs_lsst; \
+#                 git checkout w.2018.39-run1.2-v3; \
+#                 setup -r . -j; \
+#                 scons; \
+#                 cd ..'
+
+RUN echo "Installing additional python packages" && \
+    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+                  pip install -c $LSST_STACK_DIR/require.txt bokeh; \
+                  pip install -c $LSST_STACK_DIR/require.txt dask; \
+                  pip install -c $LSST_STACK_DIR/require.txt distributed; \
+                  pip install -c $LSST_STACK_DIR/require.txt datashader; \
+                  pip install -c $LSST_STACK_DIR/require.txt fastparquet; \
+                  pip install -c $LSST_STACK_DIR/require.txt google-cloud-bigquery; \
+                  pip install -c $LSST_STACK_DIR/require.txt holoviews; \
+                  pip install -c $LSST_STACK_DIR/require.txt pyarrow; \
+                  pip install -c $LSST_STACK_DIR/require.txt ipympl; \
+                  pip install -c $LSST_STACK_DIR/require.txt ipywidgets'
+
+
+RUN echo "Installing CatalogMatcher" && \
+    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+                 git clone https://github.com/LSSTDESC/CatalogMatcher.git; \
+                 cd CatalogMatcher; \
+                 python setup.py install'
+
+RUN echo "Installing GCR packages" && \
+    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+                  pip freeze > $LSST_STACK_DIR/require.txt; \
+                  pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
+                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.14.3.tar.gz' 
+
+
+RUN echo "hooks.config.site.lockDirectoryBase = None" >> $LSST_STACK_DIR/stack/miniconda3-4.5.12-1172c30/site/startup.py
