@@ -1,6 +1,8 @@
 name: desc-stack release
 
-on: [release]
+on: 
+ release:
+  types: [published]
 
 jobs:
   build:
@@ -16,9 +18,9 @@ jobs:
       - name: do docker build
         run: docker build --no-cache -t heather999/jupyter-test:$GITHUB_REF -f $GITHUB_WORKSPACE/Dockerfile . 
       - name: Docker push tag
-        run: docker push heather999/jupyter-test:$GITHUB_REF
+        run: docker push heather999/jupyter-test:$(echo GITHUB_REF | cut -d'\/' -f3)
       - name: tag dev
-        run: docker tag heather999/jupyter-test:$GITHUB_REF heather999/jupyter-test:dev
+        run: docker tag heather999/jupyter-test:$(echo GITHUB_REF| cut -d'\/' -f3) heather999/jupyter-test:dev
       - name: Docker push dev
         run: docker push heather999/jupyter-test:dev
        
