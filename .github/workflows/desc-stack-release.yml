@@ -1,0 +1,24 @@
+name: desc-stack release
+
+on: [release]
+
+jobs:
+  build:
+    name: desc-stack release
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Docker login
+        run: echo '${{ secrets.DOCKERHUB_ACCESSTOK }}' | docker login --username heather999 --password-stdin
+      - name: checkout desc-stack
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: do docker build
+        run: docker build --no-cache -t heather999/jupyter-test:$GITHUB_REF -f $GITHUB_WORKSPACE/Dockerfile . 
+      - name: Docker push tag
+        run: docker push heather999/jupyter-test:$GITHUB_REF
+      - name: tag dev
+        run: docker tag heather999/jupyter-test:$GITHUB_REF heather999/jupyter-test:dev
+      - name: Docker push dev
+        run: docker push heather999/jupyter-test:dev
+       
