@@ -16,13 +16,13 @@ jobs:
         with:
           fetch-depth: 1
       - name: check cut
-        run: echo GITHUB_REF | cut -d/ -f 3
+        run: export STACKTAG=echo $GITHUB_REF | cut -d/ -f 3
       - name: do docker build
-        run: docker build --no-cache -t heather999/jupyter-test:(echo GITHUB_REF | cut -d/ -f3) -f $GITHUB_WORKSPACE/Dockerfile . 
+        run: docker build --no-cache -t heather999/jupyter-test:$STACKTAG -f $GITHUB_WORKSPACE/Dockerfile . 
       - name: Docker push tag
-        run: docker push heather999/jupyter-test:(echo GITHUB_REF | cut -d/ -f3)
+        run: docker push heather999/jupyter-test:$STACKTAG
       - name: tag dev
-        run: docker tag heather999/jupyter-test:(echo GITHUB_REF| cut -d/ -f3) heather999/jupyter-test:dev
+        run: docker tag heather999/jupyter-test:$STACKTAG heather999/jupyter-test:dev
       - name: Docker push dev
         run: docker push heather999/jupyter-test:dev
        
