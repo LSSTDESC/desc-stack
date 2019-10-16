@@ -16,7 +16,9 @@ jobs:
         with:
           fetch-depth: 1
       - name: check cut
-        run: export STACKTAG="heather999/jupyter-test:"$(echo $GITHUB_REF | cut -d/ -f 3)
+        run: export STACKTAG="heather999/jupyter-test:"$(echo $GITHUB_REF | cut -d/ -f 4)
+      - name: check env var
+        run: echo $STACKTAG
       - name: do docker build
         run: docker build --no-cache -t $STACKTAG -f $GITHUB_WORKSPACE/Dockerfile . 
       - name: Docker push tag
