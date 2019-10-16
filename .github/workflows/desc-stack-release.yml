@@ -18,7 +18,7 @@ jobs:
       - name: check cut
         run: $(echo GITHUB_REF | cut -d/ -f 3)
       - name: do docker build
-        run: docker build --no-cache -t heather999/jupyter-test:$(echo GITHUB_REF | cut -d '\/' -f3) -f $GITHUB_WORKSPACE/Dockerfile . 
+        run: docker build --no-cache -t heather999/jupyter-test:$(echo GITHUB_REF | cut -d/ -f3) -f $GITHUB_WORKSPACE/Dockerfile . 
       - name: Docker push tag
         run: docker push heather999/jupyter-test:$(echo GITHUB_REF | cut -d'\/' -f3)
       - name: tag dev
