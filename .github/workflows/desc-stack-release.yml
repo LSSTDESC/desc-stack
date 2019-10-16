@@ -17,12 +17,12 @@ jobs:
           fetch-depth: 1
       - name: check cut
         env: 
-          STACKTAG: heather999/jupyter-test:$(echo $GITHUB_REF | cut -d/ -f 4)
+          STACKTAG: heather999/jupyter-test:${{ echo $GITHUB_REF | cut -d/ -f 4 }}
         run: echo $STACKTAG
       - name: do docker build
         run: docker build --no-cache -t $STACKTAG -f $GITHUB_WORKSPACE/Dockerfile . 
         env:
-          STACKTAG: heather999/jupyter-test:$(echo $GITHUB_REF | cut -d/ -f4)
+          STACKTAG: heather999/jupyter-test:${{ echo $GITHUB_REF | cut -d/ -f4 }}
       - name: Docker push tag
         run: docker push $STACKTAG
       - name: tag dev
