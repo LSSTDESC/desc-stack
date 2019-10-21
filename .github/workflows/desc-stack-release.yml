@@ -19,11 +19,11 @@ jobs:
         id: get_tag
         run: echo ::set-output name=DOCKTAG::${GITHUB_REF/refs\/tags\//}
       - name: do docker build
-        run: docker build --no-cache -t heather999/jupyter-test:${{ steps.get_tag.outputs.DOCKTAG }} -f $GITHUB_WORKSPACE/Dockerfile . 
+        run: docker build --no-cache -t lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }} -f $GITHUB_WORKSPACE/Dockerfile . 
       - name: Docker push tag
-        run: docker push  heather999/jupyter-test:${{ steps.get_tag.outputs.DOCKTAG }}
+        run: docker push  lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }}
       - name: tag dev
-        run: docker tag heather999/jupyter-test:${{ steps.get_tag.outputs.DOCKTAG }} heather999/jupyter-test:dev
+        run: docker tag lsstdesc/jupyter:${{ steps.get_tag.outputs.DOCKTAG }} lsstdesc/stack-jupyter:dev
       - name: Docker push dev
-        run: docker push heather999/jupyter-test:dev
+        run: docker push lsstdesc/stack-jupyter:dev
        
