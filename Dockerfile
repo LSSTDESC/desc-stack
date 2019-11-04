@@ -41,7 +41,8 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -y cmake swig; \
                   setup fftw; \
                   setup gsl; \
-                  pip install -c $LSST_STACK_DIR/require.txt pyccl==1.0.0'
+                  pip install -c $LSST_STACK_DIR/require.txt pyccl==2.0.1; \
+                  pip install -c $LSST_STACK_DIR/require.txt astropy==3.2.3'
 
 RUN echo "Finish Installing fast3tree" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
