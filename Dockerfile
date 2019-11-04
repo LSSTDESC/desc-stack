@@ -42,6 +42,7 @@ RUN echo "Installing DESC requested packages" && \
                   setup fftw; \
                   setup gsl; \
                   pip install -c $LSST_STACK_DIR/require.txt pyccl==2.0.1; \
+                  sed -i 's/astropy==3.1.2/astropy==3.2.3/g'  $LSST_STACK_DIR/require.txt; \
                   pip install -c $LSST_STACK_DIR/require.txt astropy==3.2.3'
 
 RUN echo "Finish Installing fast3tree" && \
