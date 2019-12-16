@@ -13,16 +13,22 @@ USER root
 RUN yum install -y libffi-devel
 USER lsst
 
+#                  conda install -y ipykernel jupyter_console; \
+#                  conda install -y markupsafe nose; \
+#                   conda install -y cmake swig; \
+
+
+
 RUN echo "Installing DESC requested packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
-                  conda install -y ipykernel jupyter_console; \
+                  pip install -c $LSST_STACK_DIR/require.txt ipykernel jupyter_console; \
                   pip install -c $LSST_STACK_DIR/require.txt camb; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
                   pip install -c $LSST_STACK_DIR/require.txt fitsio; \
                   pip install -c $LSST_STACK_DIR/require.txt healpy; \
                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
-                  conda install -y markupsafe nose; \
+                  pip install -c $LSST_STACK_DIR/require.txt markupsafe nose; \
                   pip install -c $LSST_STACK_DIR/require.txt parsl==0.7.2; \
                   export PYMSSQL_BUILD_WITH_BUNDLED_FREEETDS=1; \
                   pip install -c $LSST_STACK_DIR/require.txt pymssql; \
@@ -38,7 +44,8 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt extinction; \
                   pip install -c $LSST_STACK_DIR/require.txt seaborn; \
-                  conda install -y cmake swig; \
+                  pip install -c $LSST_STACK_DIR/require.txt cmake; \
+                  conda install -y --no-update-dependencies swig; \
                   setup fftw; \
                   setup gsl; \
                   pip install -c $LSST_STACK_DIR/require.txt pyccl==2.0.1; \
