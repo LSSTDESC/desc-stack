@@ -69,7 +69,7 @@ RUN echo "Installing additional python packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt fastparquet; \
                   pip install -c $LSST_STACK_DIR/require.txt google-cloud-bigquery; \
                   pip install -c $LSST_STACK_DIR/require.txt holoviews; \
-                  pip install -c $LSST_STACK_DIR/require.txt pyarrow; \
+                  pip install -c $LSST_STACK_DIR/require.txt pyarrow==0.13.0; \
                   pip install -c $LSST_STACK_DIR/require.txt ipympl; \
                   pip install -c $LSST_STACK_DIR/require.txt ipywidgets'
 
