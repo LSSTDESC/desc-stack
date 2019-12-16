@@ -17,8 +17,8 @@ jobs:
         with:
           fetch-depth: 1
       - name: pull requested image
-        run: docker pull lsstdesc/stack-jupyter:dev
+        run: docker pull lsstdesc/stack-jupyter:w_2019_19-sims_w_2019_19-v13
       - name: Docker tag requested image as prod
-        run: docker tag lsstdesc/stack-jupyter:dev lsstdesc/stack-jupyter:prod
+        run: docker tag lsstdesc/stack-jupyter:w_2019_19-sims_w_2019_19-v13 lsstdesc/stack-jupyter:prod
       - name: Docker push prod
         run: docker push lsstdesc/stack-jupyter:prod
