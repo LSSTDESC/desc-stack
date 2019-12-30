@@ -22,6 +22,8 @@ USER lsst
 RUN echo "Installing DESC requested packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
+                  cat $LSST_STACK_DIR/require.txt; \
+                  conda list; \
                   pip install -c $LSST_STACK_DIR/require.txt ipykernel jupyter_console; \
                   pip install -c $LSST_STACK_DIR/require.txt camb; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
