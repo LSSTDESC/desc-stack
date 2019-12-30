@@ -1,4 +1,4 @@
-FROM lsstdesc/stack-sims:w_2019_19-sims_w_2019_19
+FROM lsstsqre/centos:7-stack-lsst_distrib-v19_0_0
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
@@ -48,24 +48,22 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -y --no-update-dependencies swig; \
                   setup fftw; \
                   setup gsl; \
-                  pip install -c $LSST_STACK_DIR/require.txt pyccl==2.0.1; \
-                  sed -i 's/astropy==3.1.2/astropy==3.2.3/g'  $LSST_STACK_DIR/require.txt; \
-                  pip install -c $LSST_STACK_DIR/require.txt astropy==3.2.3'
+                  pip install -c $LSST_STACK_DIR/require.txt pyccl==2.0.1;'
 
 RUN echo "Finish Installing fast3tree" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                  echo -e "from fast3tree.make_lib import make_lib\nmake_lib(3, True)\nmake_lib(3, False)\nmake_lib(2, True)\nmake_lib(2, False)" >> $LSST_STACK_DIR/stack/install_fast3tree.py; \
                  python $LSST_STACK_DIR/stack/install_fast3tree.py'
 
-#RUN echo "Installing obs_lsst" && \
-#    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
-#                 setup lsst_distrib; \
-#                 git clone https://github.com/lsst/obs_lsst.git; \
-#                 cd obs_lsst; \
-#                 git checkout w.2018.39-run1.2-v3; \
-#                 setup -r . -j; \
-#                 scons; \
-#                 cd ..'
+RUN echo "Installing obs_lsst" && \
+    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+                 setup lsst_distrib; \
+                 git clone https://github.com/lsst/obs_lsst.git; \
+                 cd obs_lsst; \
+                 git checkout dc2/run2.2; \
+                 setup -r . -j; \
+                 scons; \
+                 cd ..'
 
 RUN echo "Installing additional python packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
@@ -76,7 +74,7 @@ RUN echo "Installing additional python packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt fastparquet; \
                   pip install -c $LSST_STACK_DIR/require.txt google-cloud-bigquery; \
                   pip install -c $LSST_STACK_DIR/require.txt holoviews; \
-                  pip install -c $LSST_STACK_DIR/require.txt pyarrow==0.13.0; \
+#                  pip install -c $LSST_STACK_DIR/require.txt pyarrow==0.13.0; \
                   pip install -c $LSST_STACK_DIR/require.txt ipympl; \
                   pip install -c $LSST_STACK_DIR/require.txt ipywidgets'
 
