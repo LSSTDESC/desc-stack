@@ -24,6 +24,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   conda list; \
+                  eups list; \
                   pip install -c $LSST_STACK_DIR/require.txt ipykernel jupyter_console; \
                   pip install -c $LSST_STACK_DIR/require.txt camb; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
@@ -47,7 +48,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt extinction; \
                   pip install -c $LSST_STACK_DIR/require.txt seaborn; \
                   pip install -c $LSST_STACK_DIR/require.txt cmake; \
-                  conda install -y --no-update-dependencies swig; \
+                  conda install -y --no-update-deps swig; \
                   setup fftw; \
                   setup gsl; \
                   pip install -c $LSST_STACK_DIR/require.txt pyccl==2.0.1;'
