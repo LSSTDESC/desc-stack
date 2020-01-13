@@ -96,4 +96,4 @@ RUN echo "Installing GCR packages" && \
 
 ENV HDF5_USE_FILE_LOCKING FALSE
 
-RUN echo "hooks.config.site.lockDirectoryBase = None" >> $LSST_STACK_DIR/stack/miniconda3-4.5.12-1172c30/site/startup.py
+RUN echo "hooks.config.site.lockDirectoryBase = None" >> $LSST_STACK_DIR/stack/current/site/startup.py
