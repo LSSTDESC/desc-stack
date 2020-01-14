@@ -15,9 +15,8 @@ RUN echo "Environment: \n" && env | sort
 USER root
 RUN yum install -y libffi-devel && \
     mkdir -p $ASTROPY_XDG_CONFIG_HOME/astropy && \
-    chgrp -R lsst $ASTROPY_XDG_CONFIG_HOME && \ 
     mkdir -p $ASTROPY_XDG_CACHE_HOME/astropy && \
-    chgrp -R lsst $ASTROPY_XDG_CACHE_HOME
+    chown -R lsst $LSST_STACK_DIR/astropy
 USER lsst
 ENV XDG_CONFIG_HOME $ASTROPY_XDG_CONFIG_HOME
 ENV XDG_CACHE_HOME $ASTROPY_XDG_CACHE_HOME
