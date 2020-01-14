@@ -5,13 +5,22 @@ ARG LSST_STACK_DIR=/opt/lsst/software/stack
 ARG LSST_USER=lsst
 ARG LSST_GROUP=lsst
 
+ARG ASTROPY_XDG_CONFIG_HOME=$LSST_STACK_DIR/astropy/xdg_config_home
+ARG ASTROPY_XDG_CACHE_HOME=$LSST_STACK_DIR/astropy/xdg_cache_home
+
 WORKDIR $LSST_STACK_DIR
 
 RUN echo "Environment: \n" && env | sort
 
 USER root
-RUN yum install -y libffi-devel
+RUN yum install -y libffi-devel && \
+    mkdir -p $ASTROPY_XDG_CONFIG_HOME/astropy && \
+    chgrp -R lsst $ASTROPY_XDG_CONFIG_HOME && \ 
+    mkdir -p $ASTROPY_XDG_CACHE_HOME/astropy && \
+    chgrp -R lsst $ASTROPY_XDG_CACHE_HOME
 USER lsst
+ENV XDG_CONFIG_HOME $ASTROPY_XDG_CONFIG_HOME
+ENV XDG_CACHE_HOME $ASTROPY_XDG_CACHE_HOME
 
 #                  conda install -y ipykernel jupyter_console; \
 #                  conda install -y markupsafe nose; \
