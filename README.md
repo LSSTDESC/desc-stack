@@ -1,2 +1,2 @@
 # desc-stack
-DESC desc-stack, here until GitHub actions is released
+DESC desc-stack Python env for use at the command line and as a Jupyter kernel
