@@ -10,7 +10,7 @@ WORKDIR $LSST_STACK_DIR
 RUN echo "Environment: \n" && env | sort
 
 USER root
-RUN yum install -y libffi-devel
+RUN yum install -y libffi-devel nodejs
 USER lsst
 
 #                  conda install -y ipykernel jupyter_console; \
@@ -78,7 +78,9 @@ RUN echo "Installing additional python packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt holoviews; \
                   pip install -c $LSST_STACK_DIR/require.txt pyarrow==0.13.0; \
                   pip install -c $LSST_STACK_DIR/require.txt ipympl; \
-                  pip install -c $LSST_STACK_DIR/require.txt ipywidgets'
+                  pip install -c $LSST_STACK_DIR/require.txt ipywidgets; \
+                  jupyter labextension install @jupyter-widgets/jupyterlab-manager; \
+                  jupyter labextension install jupyter-matplotlib'
 
 
 RUN echo "Installing CatalogMatcher" && \
