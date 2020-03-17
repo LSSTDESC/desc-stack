@@ -40,7 +40,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt tables; \
                   pip install -c $LSST_STACK_DIR/require.txt TreeCorr==4.0.8; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.4.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.5.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt corner; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
@@ -94,7 +94,7 @@ RUN echo "Installing GCR packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.14.5.tar.gz' 
+                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.15.0.tar.gz' 
 
 ENV HDF5_USE_FILE_LOCKING FALSE
 
