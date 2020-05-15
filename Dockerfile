@@ -34,11 +34,11 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt healpy; \
                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt markupsafe nose; \
-                  pip install -c $LSST_STACK_DIR/require.txt parsl==0.7.2; \
+                  pip install -c $LSST_STACK_DIR/require.txt parsl; \
                   export PYMSSQL_BUILD_WITH_BUNDLED_FREEETDS=1; \
                   pip install -c $LSST_STACK_DIR/require.txt pymssql; \
                   pip install -c $LSST_STACK_DIR/require.txt tables; \
-                  pip install -c $LSST_STACK_DIR/require.txt TreeCorr==4.0.8; \
+                  pip install -c $LSST_STACK_DIR/require.txt TreeCorr; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.5.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt corner; \
@@ -53,7 +53,7 @@ RUN echo "Installing DESC requested packages" && \
                   conda install --no-deps -y swig; \
                   setup fftw; \
                   setup gsl; \
-                  pip install -c $LSST_STACK_DIR/require.txt pyccl==2.0.1;'
+                  pip install -c $LSST_STACK_DIR/require.txt pyccl==2.1.0;'
 
 RUN echo "Finish Installing fast3tree" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
@@ -94,7 +94,7 @@ RUN echo "Installing GCR packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.15.0.tar.gz' 
+                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.16.1.tar.gz' 
 
 ENV HDF5_USE_FILE_LOCKING FALSE
 
