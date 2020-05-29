@@ -28,7 +28,7 @@ RUN echo "Installing DESC requested packages" && \
                   conda list; \
                   eups list; \
                   pip install -c $LSST_STACK_DIR/require.txt ipykernel jupyter_console; \
-                  pip install -c $LSST_STACK_DIR/require.txt camb; \
+                  pip install -c $LSST_STACK_DIR/require.txt camb==1.1.2; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
                   pip install -c $LSST_STACK_DIR/require.txt fitsio; \
                   pip install -c $LSST_STACK_DIR/require.txt healpy; \
