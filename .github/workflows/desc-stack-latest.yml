@@ -1,6 +1,10 @@
 name: desc-stack latest
 
-on: [push]
+on:
+  push:
+    branches: 
+      - master
+  
 
 jobs:
   build:
