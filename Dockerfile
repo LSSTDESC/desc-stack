@@ -55,7 +55,7 @@ RUN echo "Installing DESC requested packages" && \
                   conda install --no-deps -y swig; \
                   setup fftw; \
                   setup gsl; \
-                  pip install -c $LSST_STACK_DIR/require.txt pyccl==2.1.0;'
+                  conda install -c conda-forge -y pyccl;'
 
 RUN echo "Finish Installing fast3tree" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
