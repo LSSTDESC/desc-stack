@@ -50,12 +50,14 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt extinction; \
                   pip install -c $LSST_STACK_DIR/require.txt seaborn; \
-                  pip install -c $LSST_STACK_DIR/require.txt cmake; \
-                  conda install --no-deps -y automake; \
-                  conda install --no-deps -y swig; \
-                  setup fftw; \
-                  setup gsl; \
-                  conda install -c conda-forge -y pyccl;'
+                  pip install -c $LSST_STACK_DIR/require.txt cmake;'
+                  
+                  
+ ##                 conda install --no-deps -y automake; \
+ ##                 conda install --no-deps -y swig; \
+ ##                 setup fftw; \
+ ##                 setup gsl; \
+ ##                 conda install -c conda-forge --freeze-installed -y pyccl;'
 
 RUN echo "Finish Installing fast3tree" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
