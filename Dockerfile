@@ -1,4 +1,5 @@
-FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
+#FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
+FROM lsstdesc/stack-sims:w_2020_07-sims_w_2020_07
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
@@ -17,12 +18,12 @@ USER lsst
 #                  conda install -y markupsafe nose; \
 #                   conda install -y cmake swig; \
 
-
+#echo -e "ca-certificates 2019.1.23\ncertifi 2019.3.9\nopenssl 1.1.1b" > $LSST_STACK_DIR/python/current/envs/lsst-scipipe-4d7b902/conda-meta/pinned; \
+#                  cat $LSST_STACK_DIR/python/current/envs/lsst-scipipe-4d7b902/conda-meta/pinned; \
 
 RUN echo "Installing DESC requested packages" && \
-    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
-                  echo -e "ca-certificates 2019.1.23\ncertifi 2019.3.9\nopenssl 1.1.1b" > $LSST_STACK_DIR/python/current/envs/lsst-scipipe-4d7b902/conda-meta/pinned; \
-                  cat $LSST_STACK_DIR/python/current/envs/lsst-scipipe-4d7b902/conda-meta/pinned; \
+    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
+                  conda list > $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   conda list; \
@@ -79,7 +80,6 @@ RUN echo "Installing additional python packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt fastparquet; \
                   pip install -c $LSST_STACK_DIR/require.txt google-cloud-bigquery; \
                   pip install -c $LSST_STACK_DIR/require.txt holoviews; \
-#                  pip install -c $LSST_STACK_DIR/require.txt pyarrow==0.13.0; \
                   pip install -c $LSST_STACK_DIR/require.txt ipympl==0.4.1; \
                   pip install -c $LSST_STACK_DIR/require.txt ipywidgets'
 
