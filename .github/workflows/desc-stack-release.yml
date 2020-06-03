@@ -27,7 +27,7 @@ jobs:
       - name: Docker push tag
         run: docker push  lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }}
       - name: tag dev
-        run: docker tag lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }} lsstdesc/stack-jupyter:dev
+        run: docker tag lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }} lsstdesc/stack-jupyter:weekly
       - name: Docker push dev
-        run: docker push lsstdesc/stack-jupyter:dev
+        run: docker push lsstdesc/stack-jupyter:weekly
        
