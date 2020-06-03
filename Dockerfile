@@ -51,7 +51,8 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt extinction; \
                   pip install -c $LSST_STACK_DIR/require.txt seaborn; \
                   pip install -c $LSST_STACK_DIR/require.txt cmake; \
-                  conda install --no-deps -y automake swig; \
+                  conda install --no-deps -y automake; \
+                  conda install --no-deps -y swig; \
                   setup fftw; \
                   setup gsl; \
                   pip install -c $LSST_STACK_DIR/require.txt pyccl==2.1.0;'
