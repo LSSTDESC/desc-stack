@@ -23,7 +23,7 @@ USER lsst
 
 RUN echo "Installing DESC requested packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
-                  conda list > $CONDA_PREFIX/conda-meta/pinned; \
+                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   conda list; \
