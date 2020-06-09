@@ -96,7 +96,7 @@ RUN echo "Installing GCR packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.17.0.tar.gz' 
+                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.18.0.tar.gz' 
 
 ENV HDF5_USE_FILE_LOCKING FALSE
 
