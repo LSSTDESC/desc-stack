@@ -26,6 +26,8 @@ jobs:
         run: docker build --no-cache -t lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }} -f $GITHUB_WORKSPACE/Dockerfile . 
       - name: Docker push tag
         run: docker push  lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }}
+      - name: Docker test pyccl
+        run: docker run -it --rm lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }} /bin/sh -c "source /opt/lsst/software/stack/loadLSST.bash && setup lsst_distrib && python -c 'import pyccl'"
       - name: tag dev
         run: docker tag lsstdesc/stack-jupyter:${{ steps.get_tag.outputs.DOCKTAG }} lsstdesc/stack-jupyter:dev
       - name: Docker push dev
