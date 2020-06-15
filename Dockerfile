@@ -52,11 +52,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt extinction; \
                   pip install -c $LSST_STACK_DIR/require.txt seaborn; \
                   pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; \
-                  pip install -c $LSST_STACK_DIR/require.txt cmake; \
-                  conda install --no-deps -y swig; \
-                  setup fftw; \
-                  setup gsl; \
-                  pip install -c $LSST_STACK_DIR/require.txt pyccl==2.1.0;'
+                  pip install -c $LSST_STACK_DIR/require.txt cmake;'
                   
                   
  ##                 conda install --no-deps -y automake; \
@@ -70,15 +66,16 @@ RUN echo "Finish Installing fast3tree" && \
                  echo -e "from fast3tree.make_lib import make_lib\nmake_lib(3, True)\nmake_lib(3, False)\nmake_lib(2, True)\nmake_lib(2, False)" >> $LSST_STACK_DIR/stack/install_fast3tree.py; \
                  python $LSST_STACK_DIR/stack/install_fast3tree.py'
 
-RUN echo "Installing obs_lsst" && \
-    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
-                 setup lsst_distrib; \
-                 git clone https://github.com/lsst/obs_lsst.git; \
-                 cd obs_lsst; \
-                 git checkout dc2/run2.2; \
-                 setup -r . -j; \
-                 scons; \
-                 cd ..'
+# dc2/run2.2 branch is not compatible with the recent weeklies
+#RUN echo "Installing obs_lsst" && \
+#    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+#                 setup lsst_distrib; \
+#                 git clone https://github.com/lsst/obs_lsst.git; \
+#                 cd obs_lsst; \
+#                 git checkout dc2/run2.2; \
+#                 setup -r . -j; \
+#                 scons; \
+#                 cd ..'
 
 RUN echo "Installing additional python packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
