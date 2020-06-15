@@ -6,6 +6,8 @@ ARG LSST_STACK_DIR=/opt/lsst/software/stack
 ARG LSST_USER=lsst
 ARG LSST_GROUP=lsst
 
+ARG LSST_DESC_OBS_LSST=w.2020.07
+
 WORKDIR $LSST_STACK_DIR
 
 RUN echo "Environment: \n" && env | sort
@@ -67,15 +69,15 @@ RUN echo "Finish Installing fast3tree" && \
                  python $LSST_STACK_DIR/stack/install_fast3tree.py'
 
 # dc2/run2.2 branch is not compatible with the recent weeklies
-#RUN echo "Installing obs_lsst" && \
-#    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
-#                 setup lsst_distrib; \
-#                 git clone https://github.com/lsst/obs_lsst.git; \
-#                 cd obs_lsst; \
-#                 git checkout dc2/run2.2; \
-#                 setup -r . -j; \
-#                 scons; \
-#                 cd ..'
+RUN echo "Installing obs_lsst" && \
+    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+                 setup lsst_distrib; \
+                 git clone https://github.com/lsst/obs_lsst.git; \
+                 cd obs_lsst; \
+                 git checkout $LSST_DESC_OBS_LSST; \
+                 setup -r . -j; \
+                 scons; \
+                 cd ..'
 
 RUN echo "Installing additional python packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
