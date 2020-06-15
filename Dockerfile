@@ -23,6 +23,7 @@ USER lsst
 
 RUN echo "Installing DESC requested packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
+                  setup lsst_distrib; \
                   conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
@@ -32,7 +33,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt camb==1.1.2; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
                   pip install -c $LSST_STACK_DIR/require.txt fitsio; \
-                  pip install -c $LSST_STACK_DIR/require.txt healpy; \
+                  pip install -c $LSST_STACK_DIR/require.txt healsparse; \
                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt markupsafe nose; \
                   pip install -c $LSST_STACK_DIR/require.txt parsl; \
@@ -50,7 +51,12 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt extinction; \
                   pip install -c $LSST_STACK_DIR/require.txt seaborn; \
-                  pip install -c $LSST_STACK_DIR/require.txt cmake;'
+                  pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; \
+                  pip install -c $LSST_STACK_DIR/require.txt cmake; \
+                  conda install --no-deps -y swig; \
+                  setup fftw; \
+                  setup gsl; \
+                  pip install -c $LSST_STACK_DIR/require.txt pyccl==2.1.0;'
                   
                   
  ##                 conda install --no-deps -y automake; \
@@ -97,7 +103,7 @@ RUN echo "Installing GCR packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.17.0.tar.gz' 
+                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v0.18.1.tar.gz' 
 
 ENV HDF5_USE_FILE_LOCKING FALSE
 
