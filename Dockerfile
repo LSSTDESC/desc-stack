@@ -1,12 +1,12 @@
 #FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
-FROM lsstdesc/stack-sims:w_2020_07-sims_w_2020_07
+FROM lsstdesc/stack-sims:w_2020_22-sims_w_2020_22
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
 ARG LSST_USER=lsst
 ARG LSST_GROUP=lsst
 
-ARG LSST_DESC_OBS_LSST=w.2020.07
+ARG LSST_DESC_OBS_LSST=w.2020.22
 
 WORKDIR $LSST_STACK_DIR
 
@@ -26,6 +26,7 @@ USER lsst
 RUN echo "Installing DESC requested packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
                   setup lsst_distrib; \
+                  setup lsst_sims; \
                   conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
