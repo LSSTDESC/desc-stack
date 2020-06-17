@@ -66,7 +66,8 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -y --freeze-installed holoviews; \
                   conda install -y --freeze-installed ipympl; \
                   conda install -y --freeze-installed namaster; \
-                  conda install -y --freeze-installed dustmaps;'
+                  conda install -y --freeze-installed dustmaps; \
+                  python -c "from dustmaps.config import config; config['data_dir'] = '/global/common/software/lsst/common/miniconda/dustmaps'; print(config['data_dir']"; '
                   
 
 RUN echo "Finish Installing fast3tree" && \
