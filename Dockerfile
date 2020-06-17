@@ -65,7 +65,8 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -y --freeze-installed google-cloud-bigquery; \
                   conda install -y --freeze-installed holoviews; \
                   conda install -y --freeze-installed ipympl; \
-                  conda install -y --freeze-installed namaster;'
+                  conda install -y --freeze-installed namaster;
+                  conda install -y --freeze-installed dustmaps;'
                   
 
 RUN echo "Finish Installing fast3tree" && \
