@@ -8,6 +8,8 @@ Available at NERSC by setting up [DESC Kernels](https://confluence.slac.stanford
 ### Kernels
 - desc-stack: Current DM version of python with functional DMstack (lsst_distrib) + DESC requested packages
 - desc-stack-dev: Upcoming production release of desc-stack
+- desc-stack-weekly: Latest stable DMstack + sims
+- desc-stack-weekly-latest: Most recent DMstack + sims weekly
 - desc-stack-old: Previous production version of desc-stack
 
 
