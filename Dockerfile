@@ -1,12 +1,12 @@
 #FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
-FROM lsstdesc/stack-sims:w_2020_22-sims_w_2020_22
+FROM lsstdesc/stack-sims:w_2020_27-sims_w_2020_27
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
 ARG LSST_USER=lsst
 ARG LSST_GROUP=lsst
 
-ARG LSST_DESC_OBS_LSST=w.2020.22
+ARG LSST_DESC_OBS_LSST=w.2020.27
 
 WORKDIR $LSST_STACK_DIR
 
@@ -34,7 +34,7 @@ RUN echo "Installing DESC requested packages" && \
                   conda list; \
                   eups list; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v0.18.1.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v0.19.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   conda install -y --freeze-installed ipykernel jupyter_console; \
                   conda install -y --freeze-installed pyccl; \
