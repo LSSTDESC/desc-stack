@@ -22,13 +22,16 @@ USER lsst
 #                  setup -r . -j; \
 #                  scons; \
 #                  cd ..; \
+
+#                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
+
                   
 # obs_lsst dc2/run2.2 branch is not compatible with the recent weeklies
 RUN echo "Installing DESC requested packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
                   setup lsst_distrib; \
                   setup lsst_sims; \
-                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
+                  echo $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   conda list; \
@@ -37,7 +40,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v0.19.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
-                  conda install -c conda-forge -y --freeze-installed ipykernel jupyter_console; \
+                  conda install -c conda-forge -y --no-update-deps ipykernel jupyter_console; \
                   pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; '
                   
                   
