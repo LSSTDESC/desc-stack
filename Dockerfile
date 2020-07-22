@@ -45,7 +45,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v0.19.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
-                  conda install -c conda-forge -y --no-update-deps ipykernel jupyter_console; \
+                  conda install -c conda-forge -y ipykernel jupyter_console; \
                   pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; '
                   
                   
