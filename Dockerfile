@@ -32,6 +32,11 @@ RUN echo "Installing DESC requested packages" && \
                   setup lsst_distrib; \
                   setup lsst_sims; \
                   echo $CONDA_PREFIX/conda-meta/pinned; \
+                  sed '/binutils/d' $CONDA_PREFIX/conda-meta/pinned; \
+                  sed '/lcms2/d' $CONDA_PREFIX/conda-meta/pinned; \
+                  sed '/llvm-openmp/d' $CONDA_PREFIX/conda-meta/pinned; \
+                  sed '/sysroot/d' $CONDA_PREFIX/conda-meta/pinned; \
+                  echo $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   conda list; \
