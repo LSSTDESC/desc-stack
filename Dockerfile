@@ -31,13 +31,12 @@ RUN echo "Installing DESC requested packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
                   setup lsst_distrib; \
                   setup lsst_sims; \
-                  echo $CONDA_PREFIX/conda-meta/pinned; \
-                  sed '/binutils/d' $CONDA_PREFIX/conda-meta/pinned; \
-                  sed '/lcms2/d' $CONDA_PREFIX/conda-meta/pinned; \
-                  sed '/llvm-openmp/d' $CONDA_PREFIX/conda-meta/pinned; \
-                  sed '/sysroot/d' $CONDA_PREFIX/conda-meta/pinned; \
-                  echo $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
+                  cat $LSST_STACK_DIR/require.txt; \
+                  sed '/binutils/d' $LSST_STACK_DIR/require.txt; \
+                  sed '/lcms2/d' $LSST_STACK_DIR/require.txt; \
+                  sed '/llvm-openmp/d' $LSST_STACK_DIR/require.txt; \
+                  sed '/sysroot/d' $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   conda list; \
                   eups list; \
@@ -45,8 +44,8 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v0.19.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
-                  conda install -c conda-forge -y ipykernel jupyter_console; \
-                  pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; '
+                  pip install -c $LSST_STACK_DIR/require.txt ipykernel jupyter_console; \
+                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/supreme.git; '
                   
                   
 #                 conda install -y --freeze-installed ipykernel jupyter_console; \
