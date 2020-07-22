@@ -45,6 +45,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt ipykernel jupyter_console; \
+                  pip install -c $LSST_STACK_DIR/require.txt healsparse; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/supreme.git; '
                   
                   
