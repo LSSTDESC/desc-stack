@@ -40,42 +40,42 @@ RUN echo "Installing DESC requested packages" && \
                   cat $LSST_STACK_DIR/require.txt; \
                   conda list; \
                   eups list; \
+                  conda config --env --add channels conda-forge; \
+                  conda install -c conda-forge -y --freeze-installed ipykernel jupyter_console; \
+                  conda install -c conda-forge -y --freeze-installed pyccl; \
+                  conda install -c conda-forge -y --freeze-installed nose; \
+                  conda install -c conda-forge -y --freeze-installed parsl; \
+                  conda install -c conda-forge -y --freeze-installed healsparse; \
+                  conda install -c conda-forge -y --freeze-installed corner; \
+                  conda install -c conda-forge -y --freeze-installed pymssql; \
+                  conda install -c conda-forge -y --freeze-installed TreeCorr; \
+                  conda install -c conda-forge -y --freeze-installed scikit-image; \
+                  conda install -c conda-forge -y --freeze-installed emcee; \
+                  conda install -c conda-forge -y --freeze-installed extinction; \
+                  conda install -c conda-forge -y --freeze-installed seaborn; \
+                  conda install -c conda-forge -y --freeze-installed bokeh; \
+                  conda install -c conda-forge -y --freeze-installed dask; \
+                  conda install -c conda-forge -y --freeze-installed datashader; \
+                  conda install -c conda-forge -y --freeze-installed fastparquet; \
+                  conda install -c conda-forge -y --freeze-installed google-cloud-bigquery; \
+                  conda install -c conda-forge -y --freeze-installed holoviews; \
+                  conda install -c conda-forge -y --freeze-installed ipympl; \
+                  conda install -c conda-forge -y --freeze-installed namaster; \
+                  conda install -c conda-forge -y --freeze-installed dustmaps; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v0.19.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
-                  pip install -c $LSST_STACK_DIR/require.txt healsparse; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/supreme.git; \   
-                  conda install -y --freeze-installed ipykernel jupyter_console; \
-                  conda install -y --freeze-installed pyccl; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
                   pip install -c $LSST_STACK_DIR/require.txt fitsio; \
-                  pip install -c $LSST_STACK_DIR/require.txt healsparse; \
                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
-                  conda install -y --freeze-installed nose; \
-                  conda install -y --freeze-installed parsl; \
-                  conda install -y --freeze-installed pymssql; \
                   pip install -c $LSST_STACK_DIR/require.txt tables; \
-                  conda install -y --freeze-installed TreeCorr; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.5.0.tar.gz; \
-                  conda install -y --freeze-installed corner; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
-                  conda install -y --freeze-installed scikit-image; \
-                  conda install -y --freeze-installed emcee; \
-                  conda install -y --freeze-installed extinction; \
-                  conda install -y --freeze-installed seaborn; \
                   pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; \
-                  conda install -y --freeze-installed bokeh; \
-                  conda install -y --freeze-installed dask; \
-                  conda install -y --freeze-installed datashader; \
-                  conda install -y --freeze-installed fastparquet; \
-                  conda install -y --freeze-installed google-cloud-bigquery; \
-                  conda install -y --freeze-installed holoviews; \
-                  conda install -y --freeze-installed ipympl; \
-                  conda install -y --freeze-installed namaster; \
-                  conda install -y --freeze-installed dustmaps; \
                   python -c "from dustmaps.config import config; config[\"data_dir\"] = \"/global/common/software/lsst/common/miniconda/dustmaps\"; print(config[\"data_dir\"])"; '
                   
 
