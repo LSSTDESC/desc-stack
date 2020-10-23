@@ -65,16 +65,15 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed namaster; \
                   conda install -c conda-forge -y --freeze-installed dustmaps; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v0.19.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v1.0.1.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
-                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/supreme.git; \   
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
                   pip install -c $LSST_STACK_DIR/require.txt fitsio; \
                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt tables; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.5.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.6.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
                   pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; \
