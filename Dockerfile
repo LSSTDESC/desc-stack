@@ -25,6 +25,9 @@ USER lsst
 
 #                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
 
+# treecorr already included in stack-sims
+#                  conda install -c conda-forge -y --freeze-installed TreeCorr; \
+
                   
 # obs_lsst dc2/run2.2 branch is not compatible with the recent weeklies
 RUN echo "Installing DESC requested packages" && \
@@ -48,7 +51,6 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed healsparse; \
                   conda install -c conda-forge -y --freeze-installed corner; \
                   conda install -c conda-forge -y --freeze-installed pymssql; \
-                  conda install -c conda-forge -y --freeze-installed TreeCorr; \
                   conda install -c conda-forge -y --freeze-installed scikit-image; \
                   conda install -c conda-forge -y --freeze-installed emcee; \
                   conda install -c conda-forge -y --freeze-installed extinction; \
