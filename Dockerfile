@@ -16,12 +16,12 @@ USER root
 RUN yum install -y libffi-devel 
 USER lsst
 
-# git clone https://github.com/lsst/obs_lsst.git; \
-#                  cd obs_lsst; \
-#                  git checkout $LSST_DESC_OBS_LSST; \
-#                  setup -r . -j; \
-#                  scons; \
-#                  cd ..; \
+git clone https://github.com/lsst/obs_lsst.git; \
+                  cd obs_lsst; \
+                  git checkout $LSST_DESC_OBS_LSST; \
+                  setup -r . -j; \
+                  scons; \
+                  cd ..; \
 
 #                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
 
