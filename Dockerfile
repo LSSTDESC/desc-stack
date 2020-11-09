@@ -16,13 +16,6 @@ USER root
 RUN yum install -y libffi-devel 
 USER lsst
 
-git clone https://github.com/lsst/obs_lsst.git; \
-                  cd obs_lsst; \
-                  git checkout $LSST_DESC_OBS_LSST; \
-                  setup -r . -j; \
-                  scons; \
-                  cd ..; \
-
 #                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
 
 # treecorr already included in stack-sims
@@ -34,6 +27,13 @@ RUN echo "Installing DESC requested packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
                   setup lsst_distrib; \
                   setup lsst_sims; \
+                  cd $LSST_STACK_DIR; \
+                  git clone https://github.com/lsst/obs_lsst.git; \
+                  cd obs_lsst; \
+                  git checkout $LSST_DESC_OBS_LSST; \
+                  setup -r . -j; \
+                  scons; \
+                  cd ..; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   sed '/binutils/d' $LSST_STACK_DIR/require.txt; \
