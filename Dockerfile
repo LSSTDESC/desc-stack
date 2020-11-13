@@ -1,5 +1,5 @@
 #FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
-FROM lsstdesc/stack-sims:w_2020_45-sims_w_2020_45
+FROM lsstdesc/stack-sims:w_2020_45-sims_w_2020_45-v1
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
