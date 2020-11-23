@@ -80,10 +80,11 @@ RUN echo "Installing DESC requested packages" && \
                   python -c "from dustmaps.config import config; config[\"data_dir\"] = \"/global/common/software/lsst/common/miniconda/dustmaps\"; print(config[\"data_dir\"])"; '
                   
 
-RUN echo "Finish Installing fast3tree" && \
-    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
-                 echo -e "from fast3tree.make_lib import make_lib\nmake_lib(3, True)\nmake_lib(3, False)\nmake_lib(2, True)\nmake_lib(2, False)" >> $LSST_STACK_DIR/stack/install_fast3tree.py; \
-                 python $LSST_STACK_DIR/stack/install_fast3tree.py'
+# Turn this off now that 0.4.0 is released, this may no longer be necessary
+#RUN echo "Finish Installing fast3tree" && \
+#    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+#                 echo -e "from fast3tree.make_lib import make_lib\nmake_lib(3, True)\nmake_lib(3, False)\nmake_lib(2, True)\nmake_lib(2, False)" >> $LSST_STACK_DIR/stack/install_fast3tree.py; \
+#                 python $LSST_STACK_DIR/stack/install_fast3tree.py'
 
 
 ENV HDF5_USE_FILE_LOCKING FALSE
