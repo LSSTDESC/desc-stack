@@ -1,12 +1,12 @@
 #FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
-FROM lsstdesc/stack-sims:w_2020_47-sims_w_2020_47
+FROM lsstdesc/stack-sims:w_2020_45-sims_w_2020_45
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
 ARG LSST_USER=lsst
 ARG LSST_GROUP=lsst
 
-ARG LSST_DESC_OBS_LSST=w.2020.47
+ARG LSST_DESC_OBS_LSST=w.2020.45
 
 WORKDIR $LSST_STACK_DIR
 
@@ -65,7 +65,7 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed namaster; \
                   conda install -c conda-forge -y --freeze-installed dustmaps; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v1.0.2.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v1.0.3.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
@@ -73,7 +73,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt tables; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.6.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.7.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
                   pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; \
