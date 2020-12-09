@@ -1,12 +1,12 @@
 #FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
-FROM lsstdesc/stack-sims:w_2020_48-sims_w_2020_48
+FROM lsstdesc/stack-sims:w_2020_49-sims_w_2020_49
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
 ARG LSST_USER=lsst
 ARG LSST_GROUP=lsst
 
-ARG LSST_DESC_OBS_LSST=w.2020.48
+ARG LSST_DESC_OBS_LSST=w.2020.49
 
 WORKDIR $LSST_STACK_DIR
 
