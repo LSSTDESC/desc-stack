@@ -13,7 +13,7 @@ WORKDIR $LSST_STACK_DIR
 RUN echo "Environment: \n" && env | sort
 
 USER root
-RUN yum install -y libffi-devel 
+RUN yum install -y libffi-devel zsh
 USER lsst
 
 #                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
