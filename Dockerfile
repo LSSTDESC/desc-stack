@@ -10,11 +10,10 @@ ARG LSST_DESC_OBS_LSST=w.2020.49
 
 WORKDIR $LSST_STACK_DIR
 
-RUN echo "Environment: \n" && env | sort
-
 USER root
 RUN yum install -y libffi-devel zsh
 USER lsst
+RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
 
 #                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
 
