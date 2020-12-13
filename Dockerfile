@@ -58,10 +58,10 @@ RUN echo "Installing DESC requested packages" && \
                   setup gsl; \
                   pip install -c $LSST_STACK_DIR/require.txt pyccl==2.1.0;'
 
-RUN echo "Finish Installing fast3tree" && \
-    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
-                 echo -e "from fast3tree.make_lib import make_lib\nmake_lib(3, True)\nmake_lib(3, False)\nmake_lib(2, True)\nmake_lib(2, False)" >> $LSST_STACK_DIR/stack/install_fast3tree.py; \
-                 python $LSST_STACK_DIR/stack/install_fast3tree.py'
+#RUN echo "Finish Installing fast3tree" && \
+#    /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
+#                 echo -e "from fast3tree.make_lib import make_lib\nmake_lib(3, True)\nmake_lib(3, False)\nmake_lib(2, True)\nmake_lib(2, False)" >> $LSST_STACK_DIR/stack/install_fast3tree.py; \
+#                 python $LSST_STACK_DIR/stack/install_fast3tree.py'
 
 RUN echo "Installing obs_lsst" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
