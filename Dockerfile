@@ -1,12 +1,12 @@
 #FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
-FROM lsstdesc/stack-sims:w_2020_50-sims_w_2020_50
+FROM lsstdesc/stack-sims:w_2020_49-sims_w_2020_49
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
 ARG LSST_USER=lsst
 ARG LSST_GROUP=lsst
 
-ARG LSST_DESC_OBS_LSST=w.2020.50
+ARG LSST_DESC_OBS_LSST=w.2020.49
 
 WORKDIR $LSST_STACK_DIR
 
@@ -63,8 +63,8 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed ipympl; \
                   conda install -c conda-forge -y --freeze-installed namaster; \
                   conda install -c conda-forge -y --freeze-installed dustmaps; \
-                  pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v1.0.3.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt GCR==0.9.0; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v1.0.4.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
