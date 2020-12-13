@@ -10,7 +10,7 @@ WORKDIR $LSST_STACK_DIR
 RUN echo "Environment: \n" && env | sort
 
 USER root
-RUN yum install -y libffi-devel 
+RUN yum install -y libffi-devel zsh 
 USER lsst
 
 #                  conda install -y ipykernel jupyter_console; \
@@ -20,6 +20,7 @@ USER lsst
 
 
 RUN echo "Installing DESC requested packages" && \
+    touch $HOME/.zshrc && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   setup lsst_distrib; \
                   echo -e "ca-certificates 2019.1.23\ncertifi 2019.3.9\nopenssl 1.1.1b" > $LSST_STACK_DIR/python/current/envs/lsst-scipipe-4d7b902/conda-meta/pinned; \
@@ -41,7 +42,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt tables; \
                   pip install -c $LSST_STACK_DIR/require.txt TreeCorr; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.6.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.7.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt corner; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
@@ -95,8 +96,8 @@ RUN echo "Installing CatalogMatcher" && \
 RUN echo "Installing GCR packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
-                  pip install -c $LSST_STACK_DIR/require.txt GCR==0.8.8; \
-                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v1.0.1.tar.gz' 
+                  pip install -c $LSST_STACK_DIR/require.txt GCR==0.9.0; \
+                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v1.0.4.tar.gz' 
 
 ENV HDF5_USE_FILE_LOCKING FALSE
 
