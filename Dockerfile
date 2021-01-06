@@ -96,8 +96,8 @@ RUN echo "Installing CatalogMatcher" && \
 RUN echo "Installing GCR packages" && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
-                  pip install -c $LSST_STACK_DIR/require.txt GCR==0.9.0; \
-                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v1.0.4.tar.gz' 
+                  pip install -c $LSST_STACK_DIR/require.txt GCR==0.9.2; \
+                  pip install https://github.com/LSSTDESC/gcr-catalogs/archive/v1.1.0.tar.gz' 
 
 ENV HDF5_USE_FILE_LOCKING FALSE
 
