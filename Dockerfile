@@ -64,7 +64,7 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed namaster; \
                   conda install -c conda-forge -y --freeze-installed dustmaps; \
                   pip install -c $LSST_STACK_DIR/require.txt GCR==0.9.2; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v1.1.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/gcr-catalogs/archive/v1.2.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
