@@ -34,6 +34,7 @@ RUN echo "Installing DESC requested packages" && \
                   scons; \
                   cd ..; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
+                  sed -i '/@/d' $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   sed '/binutils/d' $LSST_STACK_DIR/require.txt; \
                   sed '/lcms2/d' $LSST_STACK_DIR/require.txt; \
