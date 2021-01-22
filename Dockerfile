@@ -75,7 +75,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.7.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
-                  pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; \
+                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/supreme.git; \
                   python -c "from dustmaps.config import config; config[\"data_dir\"] = \"/global/common/software/lsst/common/miniconda/dustmaps\"; print(config[\"data_dir\"])"; '
                   
 
