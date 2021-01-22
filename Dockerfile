@@ -67,7 +67,8 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed gcr; \
                   conda install -c conda-forge -y --freeze-installed lsstdesc-gcr-catalogs; \
                   conda install -c conda-forge -y --freeze-installed pytables fitsio; \
-                  condta install -c conda-forge -y --freeze-installed psycopg2; \
+                  conda install -c conda-forge -y --freeze-installed psycopg2; \
+                  conda install -c conda-forge -y --freeze-installed fast-pt; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
