@@ -65,12 +65,11 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed dustmaps; \
                   conda install -c conda-forge -y --freeze-installed gcr; \
                   conda install -c conda-forge -y --freeze-installed lsstdesc-gcr-catalogs; \
+                  conda install -c conda-forge -y --freeze-installed pytables fitsio; \
+                  condta install -c conda-forge -y --freeze-installed psycopg2; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
-                  pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
-                  pip install -c $LSST_STACK_DIR/require.txt fitsio; \
                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt tables; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.7.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
