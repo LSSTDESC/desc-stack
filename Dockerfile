@@ -51,6 +51,7 @@ RUN echo "Installing DESC requested packages" && \
                   pip install -c $LSST_STACK_DIR/require.txt psycopg2-binary; \
                   pip install -c $LSST_STACK_DIR/require.txt extinction; \
                   pip install -c $LSST_STACK_DIR/require.txt seaborn; \
+                  pip install -c $LSST_STACK_DIR/require.txt joblib; \
                   pip install -c require.txt git+https://github.com/LSSTDESC/supreme.git; \
                   pip install -c $LSST_STACK_DIR/require.txt cmake; \
                   conda install --no-deps -y swig; \
