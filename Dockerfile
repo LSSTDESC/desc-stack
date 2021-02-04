@@ -28,6 +28,10 @@ RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
 #                  scons; \
 #                  cd ..; \
 
+# Pull out helper do to pip resolver issues
+#                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
+
+
                   
 # obs_lsst dc2/run2.2 branch is not compatible with the recent weeklies
 RUN echo "Installing DESC requested packages" && \
@@ -35,6 +39,8 @@ RUN echo "Installing DESC requested packages" && \
                   setup lsst_distrib; \
                   setup lsst_sims; \
                   cd $LSST_STACK_DIR; \
+                  pin-it rubin-env > $CONDA_PREFIX/conda-meta/pinned; \
+                  cat $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/require.txt; \
                   sed -i '/@/d' $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
@@ -69,10 +75,8 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed pytables fitsio; \
                   conda install -c conda-forge -y --freeze-installed psycopg2; \
                   conda install -c conda-forge -y --freeze-installed fast-pt; \
-                  conda install -c conda-forge -y --freeze-installed healsparse; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
                   pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
                   pip install https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.9.0.tar.gz; \
                   pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
