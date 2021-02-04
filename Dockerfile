@@ -30,6 +30,12 @@ RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
 
 # Pull out helper do to pip resolver issues
 #                   pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
+# pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
+#                  pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
+#                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
+#                  pip install https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.9.0.tar.gz; \
+#                 pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
+#                 pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
 
 
                   
@@ -75,12 +81,6 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed pytables fitsio; \
                   conda install -c conda-forge -y --freeze-installed psycopg2; \
                   conda install -c conda-forge -y --freeze-installed fast-pt; \
-                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
-                  pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
-                  pip install https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.9.0.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
                   pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/supreme.git; '
                   
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
