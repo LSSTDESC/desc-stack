@@ -48,7 +48,6 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed pyccl; \
                   conda install -c conda-forge -y --freeze-installed nose; \
                   conda install -c conda-forge -y --freeze-installed parsl; \
-                  conda install -c conda-forge -y --freeze-installed healsparse; \
                   conda install -c conda-forge -y --freeze-installed corner; \
                   conda install -c conda-forge -y --freeze-installed pymssql; \
                   conda install -c conda-forge -y --freeze-installed scikit-image; \
