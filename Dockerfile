@@ -58,6 +58,10 @@ RUN echo "Installing DESC requested packages" && \
                   conda list; \
                   eups list; \
                   conda config --env --add channels conda-forge; \
+                  git clone https://github.com/lsstdesc/supreme; \
+                  cd supreme; \
+                  python setup.py install; \
+                  cd ..; \
                   conda install -c conda-forge -y --freeze-installed ipykernel jupyter_console; \
                   conda install -c conda-forge -y --freeze-installed pyccl; \
                   conda install -c conda-forge -y --freeze-installed nose; \
@@ -81,7 +85,13 @@ RUN echo "Installing DESC requested packages" && \
                   conda install -c conda-forge -y --freeze-installed pytables fitsio; \
                   conda install -c conda-forge -y --freeze-installed psycopg2; \
                   conda install -c conda-forge -y --freeze-installed fast-pt; \
-                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/supreme.git; '
+                  pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
+                  pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
+                  pip install https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.9.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
+                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; '
                   
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
 ENV HDF5_USE_FILE_LOCKING FALSE
