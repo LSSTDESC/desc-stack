@@ -51,7 +51,7 @@ RUN echo "Installing DESC requested packages" && \
                   cd $LSST_STACK_DIR; \
                   pin-it rubin-env > $CONDA_PREFIX/conda-meta/pinned; \
                   cat $CONDA_PREFIX/conda-meta/pinned; \
-                  pip freeze > $LSST_STACK_DIR/require.txt; \
+                  pip freeze > $LSST_STACK_DIR/pip-constraints.txt; \
                   sed -i '/@/d' $LSST_STACK_DIR/require.txt; \
                   cat $LSST_STACK_DIR/require.txt; \
                   sed '/binutils/d' $LSST_STACK_DIR/require.txt; \
@@ -66,7 +66,8 @@ RUN echo "Installing DESC requested packages" && \
                   cd supreme; \
                   setup -r . -j; \
                   cd ..; \
-                  conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/desc.yml; ' && \
+                  conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/conda-require.txt; \
+                  pip install -c pip-constraints.txt -r /tmp/desc-stack/pip-require.txt;' && \
     rm -Rf /tmp/desc-stack
                   
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
