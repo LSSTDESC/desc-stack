@@ -52,13 +52,13 @@ RUN echo "Installing DESC requested packages" && \
                   pin-it rubin-env > $CONDA_PREFIX/conda-meta/pinned; \
                   cat $CONDA_PREFIX/conda-meta/pinned; \
                   pip freeze > $LSST_STACK_DIR/pip-constraints.txt; \
-                  sed -i '/@/d' $LSST_STACK_DIR/require.txt; \
-                  cat $LSST_STACK_DIR/require.txt; \
-                  sed '/binutils/d' $LSST_STACK_DIR/require.txt; \
-                  sed '/lcms2/d' $LSST_STACK_DIR/require.txt; \
-                  sed '/llvm-openmp/d' $LSST_STACK_DIR/require.txt; \
-                  sed '/sysroot/d' $LSST_STACK_DIR/require.txt; \
-                  cat $LSST_STACK_DIR/require.txt; \
+                  sed -i '/@/d' $LSST_STACK_DIR/pip-constraints.txt; \
+                  cat $LSST_STACK_DIR/pip-constraints.txt; \
+                  sed '/binutils/d' $LSST_STACK_DIR/pip-constraints.txt; \
+                  sed '/lcms2/d' $LSST_STACK_DIR/pip-constraints.txt; \
+                  sed '/llvm-openmp/d' $LSST_STACK_DIR/pip-constraints.txt; \
+                  sed '/sysroot/d' $LSST_STACK_DIR/pip-constraints.txt; \
+                  cat $LSST_STACK_DIR/pip-constraints.txt; \
                   conda list; \
                   eups list; \
                   conda config --env --add channels conda-forge; \
@@ -66,6 +66,7 @@ RUN echo "Installing DESC requested packages" && \
                   cd supreme; \
                   setup -r . -j; \
                   cd ..; \
+                  echo $LSST_CONDA_ENV_NAME; \
                   conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/conda-require.txt; \
                   pip install -c pip-constraints.txt -r /tmp/desc-stack/pip-require.txt;' && \
     rm -Rf /tmp/desc-stack
