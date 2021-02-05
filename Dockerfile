@@ -42,7 +42,7 @@ RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
 # obs_lsst dc2/run2.2 branch is not compatible with the recent weeklies
 RUN echo "Installing DESC requested packages" && \
     cd /tmp && \
-    git checkout https://github.com/LSSTDESC/desc-stack && \
+    git clone https://github.com/LSSTDESC/desc-stack && \
     cd desc-stack && \
     git checkout weekly && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
