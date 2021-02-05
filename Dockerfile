@@ -62,6 +62,10 @@ RUN echo "Installing DESC requested packages" && \
                   conda list; \
                   eups list; \
                   conda config --env --add channels conda-forge; \
+                  git clone https://github.com/lsstdesc/supreme; \
+                  cd supreme; \
+                  setup -r . -j; \
+                  cd ..; \
                   conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/desc.yaml; ' && \
     rm -Rf /tmp/desc-stack
                   

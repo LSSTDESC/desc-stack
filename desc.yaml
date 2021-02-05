@@ -1,4 +1,3 @@
-name: desc
 channels:
   - conda-forge
   - defaults
@@ -36,5 +35,4 @@ dependencies:
     - https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.9.0.tar.gz
     - https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz
     - git+https://github.com/msimet/Stile
-    - https://github.com/LSSTDESC/supreme.git#egg=supreme                 
 
