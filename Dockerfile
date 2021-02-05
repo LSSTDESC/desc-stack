@@ -66,6 +66,7 @@ RUN echo "Installing DESC requested packages" && \
                   cd supreme; \
                   setup -r . -j; \
                   cd ..; \
+                  python -c "import supreme"; \
                   echo $LSST_CONDA_ENV_NAME; \
                   conda env update -n $LSST_CONDA_ENV_NAME --file=/tmp/desc-stack/desc.yml; ' && \
     rm -Rf /tmp/desc-stack
