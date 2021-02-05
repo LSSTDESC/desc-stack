@@ -67,8 +67,7 @@ RUN echo "Installing DESC requested packages" && \
                   setup -r . -j; \
                   cd ..; \
                   echo $LSST_CONDA_ENV_NAME; \
-                  conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/conda-require.txt; \
-                  pip install -c pip-constraints.txt -r /tmp/desc-stack/pip-require.txt;' && \
+                  conda env update -n $LSST_CONDA_ENV_NAME --file=/tmp/desc-stack/desc.yml; ' && \
     rm -Rf /tmp/desc-stack
                   
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
