@@ -1,0 +1,40 @@
+name: desc
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - bokeh
+  - corner
+  - dask
+  - datashader
+  - emcee
+  - extinction
+  - fast-pt
+  - fastparquet
+  - fitsio
+  - gcr
+  - google-cloud-bigquery
+  - holoviews
+  - ipympl
+  - ipykernel 
+  - jupyter_console
+  - lsstdesc-gcr-catalogs
+  - namaster
+  - nose
+  - parsl
+  - psycopg2
+  - pyccl
+  - pymssql
+  - pytables
+  - scikit-image
+  - seaborn
+  - pip:
+    - https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz
+    - git+https://github.com/LSSTDESC/CatalogMatcher.git
+    - fast3tree
+    - https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz
+    - https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.9.0.tar.gz
+    - https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz
+    - git+https://github.com/msimet/Stile
+    - https://github.com/LSSTDESC/supreme.git#egg=supreme                 
+

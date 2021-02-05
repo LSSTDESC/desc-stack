@@ -41,6 +41,10 @@ RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
                   
 # obs_lsst dc2/run2.2 branch is not compatible with the recent weeklies
 RUN echo "Installing DESC requested packages" && \
+    cd /tmp && \
+    git checkout https://github.com/LSSTDESC/desc-stack && \
+    cd desc-stack && \
+    git checkout weekly && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
                   setup lsst_distrib; \
                   setup lsst_sims; \
@@ -58,40 +62,8 @@ RUN echo "Installing DESC requested packages" && \
                   conda list; \
                   eups list; \
                   conda config --env --add channels conda-forge; \
-                  git clone https://github.com/lsstdesc/supreme; \
-                  cd supreme; \
-                  python setup.py install; \
-                  cd ..; \
-                  conda install -c conda-forge -y --freeze-installed ipykernel jupyter_console; \
-                  conda install -c conda-forge -y --freeze-installed pyccl; \
-                  conda install -c conda-forge -y --freeze-installed nose; \
-                  conda install -c conda-forge -y --freeze-installed parsl; \
-                  conda install -c conda-forge -y --freeze-installed corner; \
-                  conda install -c conda-forge -y --freeze-installed pymssql; \
-                  conda install -c conda-forge -y --freeze-installed scikit-image; \
-                  conda install -c conda-forge -y --freeze-installed emcee; \
-                  conda install -c conda-forge -y --freeze-installed extinction; \
-                  conda install -c conda-forge -y --freeze-installed seaborn; \
-                  conda install -c conda-forge -y --freeze-installed bokeh; \
-                  conda install -c conda-forge -y --freeze-installed dask; \
-                  conda install -c conda-forge -y --freeze-installed datashader; \
-                  conda install -c conda-forge -y --freeze-installed fastparquet; \
-                  conda install -c conda-forge -y --freeze-installed google-cloud-bigquery; \
-                  conda install -c conda-forge -y --freeze-installed holoviews; \
-                  conda install -c conda-forge -y --freeze-installed ipympl; \
-                  conda install -c conda-forge -y --freeze-installed namaster; \
-                  conda install -c conda-forge -y --freeze-installed gcr; \
-                  conda install -c conda-forge -y --freeze-installed lsstdesc-gcr-catalogs; \
-                  conda install -c conda-forge -y --freeze-installed pytables fitsio; \
-                  conda install -c conda-forge -y --freeze-installed psycopg2; \
-                  conda install -c conda-forge -y --freeze-installed fast-pt; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/LSSTDESC/CatalogMatcher.git; \
-                  pip install -c $LSST_STACK_DIR/require.txt fast3tree; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/LSSTDESC/descqa/archive/v2.0.0-0.7.0.tar.gz; \
-                  pip install https://github.com/LSSTDESC/desc-dc2-dm-data/archive/v0.9.0.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
-                  pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; '
+                  conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/desc.yaml; ' && \
+    rm -Rf /tmp/desc-stack
                   
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
 ENV HDF5_USE_FILE_LOCKING FALSE
