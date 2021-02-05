@@ -66,7 +66,7 @@ RUN echo "Installing DESC requested packages" && \
                   cd supreme; \
                   setup -r . -j; \
                   cd ..; \
-                  conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/desc.yaml; ' && \
+                  conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/desc.yml; ' && \
     rm -Rf /tmp/desc-stack
                   
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
