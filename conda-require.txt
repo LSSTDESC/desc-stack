@@ -17,6 +17,7 @@
  namaster
  nose
  parsl
+ pip
  psycopg2
  pyccl
  pymssql
