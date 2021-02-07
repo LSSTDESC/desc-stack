@@ -64,7 +64,6 @@ RUN echo "Installing DESC requested packages" && \
                   cd supreme; \
                   setup -r . -j; \
                   cd ..; \
-                  python -c "import supreme"; \
                   echo $LSST_CONDA_ENV_NAME; \
                   conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/conda-require.txt; \
                   pip install -c pip-constraints.txt -r /tmp/desc-stack/pip-require.txt; ' && \
