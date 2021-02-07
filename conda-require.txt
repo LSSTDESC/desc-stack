@@ -7,7 +7,6 @@
  fast-pt
  fastparquet
  gcr
- google-cloud-bigquery
  holoviews
  ipympl
  ipykernel 

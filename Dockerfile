@@ -18,8 +18,6 @@ RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
 
 #                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
 
-# treecorr already included in stack-sims
-#                  conda install -c conda-forge -y --freeze-installed TreeCorr; \
 
 # git clone https://github.com/lsst/obs_lsst.git; \
 #                  cd obs_lsst; \
@@ -68,6 +66,7 @@ RUN echo "Installing DESC requested packages" && \
                   cd ..; \
                   python -c "import supreme"; \
                   echo $LSST_CONDA_ENV_NAME; \
+                  conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/conda-require.txt; \
                   pip install -c pip-constraints.txt -r /tmp/desc-stack/pip-require.txt; ' && \
     rm -Rf /tmp/desc-stack
                   
