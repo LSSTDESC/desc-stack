@@ -37,7 +37,7 @@ RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
 #                 pip install -c $LSST_STACK_DIR/require.txt https://github.com/yymao/FoFCatalogMatching/archive/v0.1.0.tar.gz; \
 #                 pip install -c $LSST_STACK_DIR/require.txt git+https://github.com/msimet/Stile; \
 
-
+#conda env update -n $LSST_CONDA_ENV_NAME --file=/tmp/desc-stack/desc.yml;
                   
 # obs_lsst dc2/run2.2 branch is not compatible with the recent weeklies
 RUN echo "Installing DESC requested packages" && \
@@ -68,7 +68,7 @@ RUN echo "Installing DESC requested packages" && \
                   cd ..; \
                   python -c "import supreme"; \
                   echo $LSST_CONDA_ENV_NAME; \
-                  conda env update -n $LSST_CONDA_ENV_NAME --file=/tmp/desc-stack/desc.yml; ' && \
+                  pip install -c pip-constraints.txt -r /tmp/desc-stack/pip-require.txt; ' && \
     rm -Rf /tmp/desc-stack
                   
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
