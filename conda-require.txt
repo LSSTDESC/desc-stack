@@ -6,7 +6,6 @@
  extinction
  fast-pt
  fastparquet
- fitsio
  gcr
  google-cloud-bigquery
  holoviews
@@ -18,9 +17,5 @@
  nose
  parsl
  pip
- psycopg2
  pyccl
  pymssql
- pytables
- scikit-image
- seaborn
