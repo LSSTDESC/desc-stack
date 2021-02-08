@@ -67,6 +67,7 @@ RUN echo "Installing DESC requested packages" && \
                   echo $LSST_CONDA_ENV_NAME; \
                   conda update -n $LSST_CONDA_ENV_NAME --freeze-installed -y --file=/tmp/desc-stack/conda-require.txt; \
                   pip install -c pip-constraints.txt -r /tmp/desc-stack/pip-require.txt; ' && \
+    sed -i 's/# auto_download = True/auto_download = False/g' $HOME/.astropy/config/astropy.cfg && \
     rm -Rf /tmp/desc-stack
                   
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
