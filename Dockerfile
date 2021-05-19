@@ -1,13 +1,11 @@
-#FROM lsstsqre/centos:7-stack-lsst_distrib-w_2020_07
-FROM lsstdesc/stack-sims:w_2021_20-sims_w_2021_20
+ARG LSST_TAG
+FROM lsstdesc/stack-sims:$LSST_TAG-sims_$LSST_TAG
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
+ARG LSST_TAG
 ARG LSST_STACK_DIR=/opt/lsst/software/stack
 ARG LSST_USER=lsst
 ARG LSST_GROUP=lsst
-
-# Using supplied obs_lsst in the weeklies
-#ARG LSST_DESC_OBS_LSST=w.2021.05
 
 WORKDIR $LSST_STACK_DIR
 
@@ -15,21 +13,7 @@ USER root
 RUN yum install -y libffi-devel zsh
 USER lsst
 RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
-
-#                  conda list --export > $CONDA_PREFIX/conda-meta/pinned; \
-
-
-# git clone https://github.com/lsst/obs_lsst.git; \
-#                  cd obs_lsst; \
-#                  git checkout $LSST_DESC_OBS_LSST; \
-#                  setup -r . -j; \
-#                  scons; \
-#                  cd ..; \
-
-
-#conda env update -n $LSST_CONDA_ENV_NAME --file=/tmp/desc-stack/desc.yml;
                   
-# obs_lsst dc2/run2.2 branch is not compatible with the recent weeklies
 RUN echo "Installing DESC requested packages" && \
     cd /tmp && \
     git clone https://github.com/LSSTDESC/desc-stack && \
