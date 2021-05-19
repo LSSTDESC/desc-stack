@@ -23,7 +23,7 @@ jobs:
         run: sudo docker system prune && df -h 
       - name : Get weekly number and date 
         run: |
-          echo "LSST_TAG=w_2021_$(date "+%U")" >> $GITHUB_ENV
+          echo "LSST_TAG=w_2021_$(date "+%U")-sims_w_2021_$(date "+%U")" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
       - name: do docker build
         run: docker build --no-cache --build-arg LSST_TAG=${{env.LSST_TAG}} -t lsstdesc/stack-jupyter:weekly-latest -f $GITHUB_WORKSPACE/Dockerfile . 
@@ -33,9 +33,9 @@ jobs:
         run: docker push lsstdesc/stack-jupyter:weekly-latest
       - name: tag weekly
         run: |
-          docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/stack-jupyter:${{env.LSST_TAG}}-sims_${{env.LSST_TAG}}-${{env.DATE_TAG}}
-          docker push lsstdesc/stack-jupyter:${{env.LSST_TAG}}-sims_${{env.LSST_TAG}}-${{env.DATE_TAG}}
-          docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/stack-jupyter:${{env.LSST_TAG}}-sims_${{env.LSST_TAG}}
-          docker push lsstdesc/stack-jupyter:${{env.LSST_TAG}}-sims_${{env.LSST_TAG}}
+          docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/stack-jupyter:${{env.LSST_TAG}}-${{env.DATE_TAG}}
+          docker push lsstdesc/stack-jupyter:${{env.LSST_TAG}}-${{env.DATE_TAG}}
+          docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/stack-jupyter:${{env.LSST_TAG}}
+          docker push lsstdesc/stack-jupyter:${{env.LSST_TAG}}
   
        
