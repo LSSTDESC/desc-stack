@@ -1,5 +1,5 @@
 ARG LSST_TAG
-FROM lsstdesc/stack-sims:$LSST_TAG-sims_$LSST_TAG
+FROM lsstdesc/stack-sims:$LSST_TAG
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_TAG
