@@ -2,9 +2,7 @@ name: desc-stack-weekly latest
 
 on:
   schedule:
-    - cron: '45 4 * * 0'
-  workflow_dispatch:
-  
+    - cron: '30 4 * * 6'
 
 jobs:
   build:
@@ -18,12 +16,13 @@ jobs:
       - name: checkout desc-stack
         uses: actions/checkout@v2
         with:
+          ref: weekly
           fetch-depth: 1
       - name : Docker prune
         run: sudo docker system prune && df -h 
       - name : Get weekly number and date 
         run: |
-          echo "LSST_TAG=w_2021_$(date "+%U")-sims_w_2021_$(date "+%U")" >> $GITHUB_ENV
+          echo "LSST_TAG=w_2021_$(date "+%U" -d "$end_date+3 days")-sims_w_2021_$(date "+%U")" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
       - name: do docker build
         run: docker build --no-cache --build-arg LSST_TAG=${{env.LSST_TAG}} -t lsstdesc/stack-jupyter:weekly-latest -f $GITHUB_WORKSPACE/Dockerfile . 
