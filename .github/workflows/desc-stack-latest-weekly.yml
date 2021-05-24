@@ -2,7 +2,7 @@ name: desc-stack-weekly latest
 
 on:
   schedule:
-    - cron: '45 15 * * 1'
+    - cron: '45 6 * * 5'
 
 jobs:
   build:
