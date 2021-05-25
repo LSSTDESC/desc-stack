@@ -35,6 +35,7 @@ jobs:
             docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/stack-jupyter:weekly
             docker push lsstdesc/stack-jupyter:weekly
           fi
+        continue-on-error: true
       - name: do docker build
         run: docker build --no-cache --build-arg LSST_TAG=${{env.LSST_TAG}} -t lsstdesc/stack-jupyter:weekly-latest -f $GITHUB_WORKSPACE/Dockerfile . 
       - name: test supreme
