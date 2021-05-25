@@ -3,6 +3,7 @@ name: desc-stack-weekly latest
 on:
   schedule:
     - cron: '45 22 * * 4'
+  workflow_dispatch:
 
 jobs:
   build:
