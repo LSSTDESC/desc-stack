@@ -37,6 +37,7 @@ RUN echo "Installing DESC requested packages" && \
                   eups list; \
                   conda config --env --add channels conda-forge; \
                   python -c "import astropy"; \
+                  touch /home/lsst/.astropy/config/astropy.cfg; \
                   git clone https://github.com/lsstdesc/supreme; \
                   cd supreme; \
                   setup -r . -j; \
