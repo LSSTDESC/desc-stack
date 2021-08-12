@@ -48,5 +48,11 @@ jobs:
           docker push lsstdesc/stack-jupyter:${{env.LSST_TAG}}-${{env.DATE_TAG}}
           docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/stack-jupyter:${{env.LSST_TAG}}
           docker push lsstdesc/stack-jupyter:${{env.LSST_TAG}}
+          docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/desc-stack:weekly-latest
+          docker push lsstdesc/desc-stack:weekly-latest
+          docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/desc-stack:${{env.LSST_TAG}}-${{env.DATE_TAG}}
+          docker push lsstdesc/desc-stack:${{env.LSST_TAG}}-${{env.DATE_TAG}}
+          docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/desc-stack:${{env.LSST_TAG}}
+          docker push lsstdesc/desc-stack:${{env.LSST_TAG}}
   
        
