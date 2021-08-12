@@ -6,7 +6,7 @@ on:
       stack_sims_tag:
         description: 'lsstdesc/stack-sims tag'     
         required: true
-        default: 'w_2021_$(date "+%U" -d "$end_date+3 days")-sims_w_2021_$(date "+%U" -d "$end_date+3 days")'
+        default: 'w_2021_32-sims_w_2021_32'
         
  jobs:
   build:
