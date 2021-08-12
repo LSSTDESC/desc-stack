@@ -1,4 +1,4 @@
-name: desc-stack-weekly latest
+name: desc-stack-any-weekly
 
 on: 
   workflow_dispatch:
