@@ -1,12 +1,19 @@
  bokeh
+ cffi
  corner
+ cython
  dask
  datashader
  emcee
  extinction
  fast-pt
  fastparquet
+ firecrown
+ fitsio
  gcr
+ h5py
+ healpy
+ healsparse
  holoviews
  ipympl
  ipykernel 
@@ -15,6 +22,15 @@
  namaster
  nose
  parsl
+ pandas
  pip
+ psutil
  pyccl
  pymssql
+ pyparsing
+ pyyaml
+ sacc
+ scikit-learn
+ setuptools
+ six
+ treecorr
