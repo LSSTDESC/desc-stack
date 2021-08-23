@@ -3,8 +3,7 @@ name: desc-stack-weekly-pr
 on:
   pull_request:
     branches:
-      - master
-      - weekly
+    - weekly
   workflow_dispatch:
 
 jobs:
