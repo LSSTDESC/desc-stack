@@ -1,20 +1,43 @@
  bokeh
+ camb
+ cffi
  corner
+ cosmosis-standalone
+ cython
  dask
  datashader
  emcee
  extinction
  fast-pt
  fastparquet
+ firecrown
+ fitsio
  gcr
+ h5py
+ healpy
+ healsparse
  holoviews
  ipympl
  ipykernel 
+ ipython
+ jedi
  jupyter_console
  lsstdesc-gcr-catalogs
  namaster
  nose
+ numba
  parsl
+ pandas
  pip
+ psutil
+ pyarrow
  pyccl
+ pygraphviz
  pymssql
+ pyparsing
+ pyyaml
+ sacc
+ scikit-learn
+ setuptools
+ six
+ treecorr
