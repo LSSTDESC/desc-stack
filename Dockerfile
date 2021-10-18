@@ -1,5 +1,6 @@
 ARG LSST_TAG
-FROM lsstdesc/stack-sims:$LSST_TAG
+#FROM lsstdesc/stack-sims:$LSST_TAG
+FROM lsstsqre/centos:7-stack-lsst_distrib-$LSST_TAG
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_TAG
@@ -21,7 +22,6 @@ RUN echo "Installing DESC requested packages" && \
     git checkout weekly && \
     /bin/bash -c 'source $LSST_STACK_DIR/loadLSST.bash; \ 
                   setup lsst_distrib; \
-                  setup lsst_sims; \
                   cd $LSST_STACK_DIR; \
                   pin-it rubin-env > $CONDA_PREFIX/conda-meta/pinned; \
                   cat $CONDA_PREFIX/conda-meta/pinned; \
