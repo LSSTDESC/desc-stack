@@ -44,7 +44,7 @@ RUN echo "Installing DESC requested packages" && \
                   cd ..; \
                   echo $LSST_CONDA_ENV_NAME; \
                   conda install -y mamba; \
-                  conda install -c conda-forge --freeze-installed -y --file=/tmp/desc-stack/conda-require.txt; \
+                  mamba install -c conda-forge --freeze-installed -y --file=/tmp/desc-stack/conda-require.txt; \
                   pip install -c pip-constraints.txt -r /tmp/desc-stack/pip-require.txt; \
                   python -c "import astropy"; ' && \
     sed -i 's/# auto_download = True/auto_download = False/g' $HOME/.astropy/config/astropy.cfg && \
