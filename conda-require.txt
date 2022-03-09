@@ -1,6 +1,5 @@
  bokeh
  corner
- datashader
  emcee
  extinction
  fast-pt
