@@ -1,6 +1,5 @@
  bokeh
  corner
- dask
  datashader
  emcee
  extinction
