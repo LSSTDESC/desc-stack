@@ -23,19 +23,19 @@ jobs:
         run: sudo docker system prune && df -h 
       - name : Get weekly number and date 
         run: |
-          echo "LSST_TAG=w_2022_$(date "+%U" -d "$end_date+3 days")" >> $GITHUB_ENV
+          echo "LSST_TAG=w_$(date "+%Y")_$(date "+%U" -d "$end_date+3 days")" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
       - name: tag current weekly
         run: |
           docker pull lsstdesc/stack-jupyter:weekly-latest
-          docker run --rm lsstdesc/stack-jupyter:weekly-latest /bin/bash -c "source /opt/lsst/software/stack/loadLSST.bash && setup lsst_sims"
+          docker run --rm lsstdesc/stack-jupyter:weekly-latest /bin/bash -c "source /opt/lsst/software/stack/loadLSST.bash"
           if $?; then
-            echo "No lsst_sims available"
+            echo "No functional weekly-latest with lsst_distrib available"
           else
             docker tag lsstdesc/stack-jupyter:weekly-latest lsstdesc/stack-jupyter:weekly
             docker push lsstdesc/stack-jupyter:weekly
           fi
-        continue-on-error: true
+        #continue-on-error: true
       - name: do docker build
         run: docker build --no-cache --build-arg LSST_TAG=${{env.LSST_TAG}} -t lsstdesc/stack-jupyter:weekly-latest -f $GITHUB_WORKSPACE/Dockerfile . 
       - name: test supreme
