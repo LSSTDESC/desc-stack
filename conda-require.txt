@@ -1,4 +1,5 @@
  bokeh
+ camb
  corner
  emcee
  extinction
