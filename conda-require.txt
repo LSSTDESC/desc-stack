@@ -14,5 +14,5 @@
  nose
  parsl
  pip
- pyccl
+ pyccl>=2.5.0
  pymssql
