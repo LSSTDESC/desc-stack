@@ -1,5 +1,4 @@
  bokeh
- camb
  corner
  emcee
  extinction
@@ -15,5 +14,4 @@
  nose
  parsl
  pip
- pyccl>=2.5.0
  pymssql
