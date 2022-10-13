@@ -16,3 +16,4 @@
  pip
  pyccl
  pymssql
+ rubin_sim
