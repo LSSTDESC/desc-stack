@@ -66,6 +66,8 @@ git clone https://github.com/lsstdesc/supreme
 cd supreme
 setup -r . -j
 
+cd $curBuildDir
+
 mamba install -c conda-forge -y --file ./packlist.txt
 pip install --no-cache-dir -r ./piplist.txt
 
