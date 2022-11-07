@@ -39,7 +39,7 @@ then
     echo "Prod Build: " $curBuildDir
 fi
 
-source $curBuildDir/setup_desc-stack.sh
+source $curBuildDir/setup-desc-stack-weekly.sh
 
 python -c 'import lsst.daf.butler'
 
