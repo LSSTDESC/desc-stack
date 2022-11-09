@@ -5,7 +5,7 @@ module swap PrgEnv-intel PrgEnv-gnu
 module unload craype-network-aries
 module unload cray-libsci
 module unload craype
-module load cray-mpich-abi/7.7.10
+module load cray-mpich-abi/7.7.19
 
 unset LSST_HOME EUPS_PATH LSST_DEVEL EUPS_PKGROOT REPOSITORY_PATH PYTHONPATH
 
@@ -55,9 +55,9 @@ bash ./lsstinstall -X $1
 source ./loadLSST.bash
 eups distrib install -t $1 lsst_distrib
 
-mamba install -c conda-forge -y mpich=3.3.*=external_*
+mamba install -c conda-forge -y mpich=3.4.*=external_*
 
-export LD_LIBRARY_PATH=/opt/cray/pe/mpt/7.7.10/gni/mpich-gnu-abi/8.2/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/opt/cray/pe/mpt/7.7.19/gni/mpich-gnu-abi/8.2/lib:$LD_LIBRARY_PATH
 
 setup lsst_distrib
 
