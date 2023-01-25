@@ -13,8 +13,8 @@
 # downloaded, see: https://data.lsstdesc.org/doc/install_gcr  for some instructions
 # /cvmfs/sw.lsst.eu/linux-x86_64/apptainer/v1.1.3/bin/apptainer shell -H $PWD /cvmfs/sw.lsst.eu/containers/apptainer/lsst_distrib/w_2023_03.sif 
 # source /opt/lsst/software/stack/loadLSST.bash
-# conda activate $PWD/mydesc
 # setup lsst_distrib
+# conda activate $PWD/mydesc
 # python -m GCRCatalogs.user_config set root_dir /path/to/the/download/directory
 
 unset LSST_HOME EUPS_PATH LSST_DEVEL EUPS_PKGROOT REPOSITORY_PATH PYTHONPATH
