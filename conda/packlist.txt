@@ -1,9 +1,12 @@
  bokeh
  corner
+ cosmosis>=2.2.2
+ cosmosis-build-standard-library>=1.2
  emcee
  extinction
  fast-pt
  fastparquet
+ firecrown
  gcr
  holoviews
  ipympl

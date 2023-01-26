@@ -1,0 +1,25 @@
+Bootstrap: localimage
+From: /cvmfs/sw.lsst.eu/containers/apptainer/lsst_distrib/w_2023_03.sif
+
+%files
+    desc-stack/conda/packlist.txt /opt/lsst/software/desc/packlist.txt
+    desc-stack/conda/piplist.txt /opt/lsst/software/desc/piplist.txt
+
+%post 
+    source /opt/lsst/software/stack/loadLSST.bash
+    setup lsst_distrib
+    mamba install -c conda-forge -y --file /opt/lsst/software/desc/packlist.txt
+    pip install --no-cache-dir -r /opt/lsst/software/desc/piplist.txt
+    cd /opt/lsst/software/desc
+    git clone https://github.com/lsstdesc/supreme
+    cd supreme
+    setup -r . -j
+    cd ..
+    firecrown_ver=$(conda list firecrown | grep firecrown|tr -s " " | cut -d " " -f 2)
+    echo $firecrown_ver
+    curl -LO https://github.com/LSSTDESC/firecrown/archive/refs/tags/v$firecrown_ver.tar.gz
+    tar xvzf v$firecrown_ver.tar.gz
+    # Set up a common directory name without version info to set FIRECROWN_DIR more easily
+    ln -s firecrown-$firecrown_ver firecrown
+    cosmosis-build-standard-library -i
+
