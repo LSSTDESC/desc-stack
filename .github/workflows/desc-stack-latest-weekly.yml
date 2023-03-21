@@ -2,7 +2,7 @@ name: desc-stack-weekly latest
 
 on:
   schedule:
-    - cron: '15 23 * * 4'
+    - cron: '15 23 * * 5'
   workflow_dispatch:
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
         run: sudo docker system prune && df -h 
       - name : Get weekly number and date 
         run: |
-          echo "LSST_TAG=w_$(date "+%Y")_$(date "+%U" -d "$end_date+3 days")" >> $GITHUB_ENV
+          echo "LSST_TAG=w_$(date "+%Y")_$(date "+%U" -d "$end_date-3 days")" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
       - name: tag current weekly
         run: |
