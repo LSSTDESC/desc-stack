@@ -38,10 +38,6 @@ RUN echo "Installing DESC requested packages" && \
                   conda config --env --add channels conda-forge; \
                   python -c "import astropy"; \
                   touch /home/lsst/.astropy/config/astropy.cfg; \
-                  git clone https://github.com/lsstdesc/supreme; \
-                  cd supreme; \
-                  setup -r . -j; \
-                  cd ..; \
                   echo $LSST_CONDA_ENV_NAME; \
                   conda install -y mamba; \
                   mamba install -c conda-forge --freeze-installed -y --file=/tmp/desc-stack/conda/packlist.txt; \
