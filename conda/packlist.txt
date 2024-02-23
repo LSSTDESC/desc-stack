@@ -10,7 +10,7 @@
  ipykernel 
  jupyter_console
  lsstdesc-gcr-catalogs
- #namaster
+ namaster
  nose
  parsl
  pip
