@@ -52,4 +52,7 @@ RUN echo "Installing DESC requested packages" && \
 ENV DUSTMAPS_CONFIG_FNAME /global/common/software/lsst/common/miniconda/dustmaps/dustmaps_config.json
 ENV HDF5_USE_FILE_LOCKING FALSE
 
-RUN echo "hooks.config.site.lockDirectoryBase = None" >> $LSST_STACK_DIR/stack/current/site/startup.py
+# HMK Path changed, current no longer exists
+#RUN echo "hooks.config.site.lockDirectoryBase = None" >> $LSST_STACK_DIR/stack/current/site/startup.py
+RUN echo "hooks.config.site.lockDirectoryBase = None" >> ~/.eups/startup.py
+
