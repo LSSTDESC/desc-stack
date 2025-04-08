@@ -1,7 +1,7 @@
  bokeh
  corner
  emcee
- extinction
+ # extinction incompatible with numpy2
  fast-pt
  fastparquet
  gcr
