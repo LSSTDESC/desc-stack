@@ -1,6 +1,7 @@
 ARG LSST_TAG
 #FROM lsstdesc/stack-sims:$LSST_TAG
-FROM lsstsqre/centos:7-stack-lsst_distrib-$LSST_TAG
+#FROM lsstsqre/centos:7-stack-lsst_distrib-$LSST_TAG
+FROM ghcr.io/lsst/scipipe:$LSST_TAG
 MAINTAINER Heather Kelly <heather@slac.stanford.edu>
 
 ARG LSST_TAG
