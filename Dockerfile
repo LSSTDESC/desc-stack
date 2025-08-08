@@ -12,10 +12,11 @@ ARG LSST_GROUP=lsst
 WORKDIR $LSST_STACK_DIR
 
 USER root
-RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo && \
-    sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo && \
-    sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo && \ 
-    yum install -y libffi-devel zsh
+#RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo && \
+#    sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo && \
+#    sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo && \ 
+#RUN  yum install -y libffi-devel zsh
+RUN dnf install -y zsh
 USER lsst
 RUN echo "Environment: \n" && env | sort && touch $HOME/.zshrc
                   
@@ -39,6 +40,10 @@ RUN echo "Installing DESC requested packages" && \
                   cat $LSST_STACK_DIR/pip-constraints.txt; \
                   conda list; \
                   eups list; \
+                  git clone https://github.com/lsst-dm/meas_pz.git; \
+                  cd meas_pz; \
+                  setup -r . -j; \
+                  cd ..; \
                   conda config --env --add channels conda-forge; \
                   python -c "import astropy"; \
                   touch /home/lsst/.astropy/config/astropy.cfg; \
