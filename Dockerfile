@@ -43,6 +43,7 @@ RUN echo "Installing DESC requested packages" && \
                   git clone https://github.com/lsst-dm/meas_pz.git; \
                   cd meas_pz; \
                   setup -r . -j; \
+                  scons -Q -j 2 opt=3; \
                   cd ..; \
                   conda config --env --add channels conda-forge; \
                   python -c "import astropy"; \
