@@ -36,7 +36,7 @@ jobs:
      
       - name : Get weekly number and date 
         run: |
-          echo "LSST_TAG=w_$(date "+%Y")_$(date "+%U" -d "$end_date-3 days")" >> $GITHUB_ENV
+          echo "LSST_TAG=w_$(date "+%Y")_$(date "+%U")" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
       - name: tag current weekly
         run: |
