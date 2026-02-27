@@ -50,6 +50,7 @@ RUN echo "Installing DESC requested packages" && \
                   touch /home/lsst/.astropy/config/astropy.cfg; \
                   echo $LSST_CONDA_ENV_NAME; \
                   conda install -y mamba; \
+                  conda install -c conda-forge/label/mpi-external -y mpich; \
                   mamba install -c conda-forge --freeze-installed -y --file=/tmp/desc-stack/conda/packlist.txt; \
                   pip install -c pip-constraints.txt -r /tmp/desc-stack/conda/piplist.txt; \
                   python -c "import astropy"; ' && \
