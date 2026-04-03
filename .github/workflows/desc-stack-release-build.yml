@@ -1,8 +1,8 @@
 name: desc-stack-release build
 
 on:
-  schedule:
-    - cron: '15 23 * * 6'
+  #schedule:
+  #  - cron: '15 23 * * 6'
   workflow_dispatch:
 
 jobs:
