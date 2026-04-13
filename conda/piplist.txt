@@ -1,3 +1,4 @@
+ceci
 https://bitbucket.org/yymao/helpers/get/v0.3.2.tar.gz
 git+https://github.com/LSSTDESC/CatalogMatcher.git
 fast3tree
