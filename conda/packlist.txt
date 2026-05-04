@@ -1,20 +1,9 @@
- bokeh
- corner
- emcee
- # extinction incompatible with numpy2
- fast-pt
- fastparquet
- gcr
- holoviews
- ipympl
- ipykernel 
- jupyter_console
- lsstdesc-gcr-catalogs
- namaster
- nose
- parsl
- pip
- pyccl
- pymssql
- rubin_sim
- sacc
+lsstdesc.weaklensingdeblending
+numba
+galsim
+pydantic
+
+# optional, but needed for tests to pass
+hexalattice
+lenstronomy
+astropy
