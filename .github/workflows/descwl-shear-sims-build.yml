@@ -39,15 +39,15 @@ jobs:
           echo "LSST_TAG=w_$(date "+%Y")_$(date "+%U")" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
       - name: tag current weekly
-        run: |
-          docker pull lsstdesc/descwl-shear-sims:weekly-latest
-          docker run --rm lsstdesc/descwl-shear-sims:weekly-latest /bin/bash -c "source /opt/lsst/software/stack/loadLSST.bash"
-          if $?; then
-            echo "No functional descwl-shear-sims-latest with lsst_distrib available"
-          else
-            docker tag lsstdesc/descwl-shear-sims:weekly-latest lsstdesc/descwl-shear-sims:weekly
-            docker push lsstdesc/descwl-shear-sims:weekly
-          fi
+      #HMK  run: |
+      #HMK    docker pull lsstdesc/descwl-shear-sims:weekly-latest
+      #HMK    docker run --rm lsstdesc/descwl-shear-sims:weekly-latest /bin/bash -c "source /opt/lsst/software/stack/loadLSST.bash"
+      #HMK    if $?; then
+      #HMK      echo "No functional descwl-shear-sims-latest with lsst_distrib available"
+      #HMK    else
+      #HMK      docker tag lsstdesc/descwl-shear-sims:weekly-latest lsstdesc/descwl-shear-sims:weekly
+      #HMK      docker push lsstdesc/descwl-shear-sims:weekly
+      #HMK    fi
         #continue-on-error: true
       - name: do docker build
         run: docker build --no-cache --build-arg LSST_TAG=${{env.LSST_TAG}} -t lsstdesc/descwl-shear-sims:weekly-latest -f $GITHUB_WORKSPACE/Dockerfile . 
