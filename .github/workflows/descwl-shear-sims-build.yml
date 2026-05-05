@@ -1,0 +1,65 @@
+name: descwl-shear-sims latest
+
+on:
+  schedule:
+    - cron: '15 20 * * 5'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build on Ubuntu
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: false    
+          # all of these default to true, but feel free to set to
+          # "false" if necessary for your workflow
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+      - name: Check Disk Space
+        run: df -h && sudo apt-get clean && df -h 
+      - name: Docker login
+        run: echo '${{ secrets.DOCKERHUB_ACCESSTOK }}' | docker login --username heather999 --password-stdin
+      - name: checkout desc-stack
+        uses: actions/checkout@v4
+        with:
+          ref: descwl-shear-sims
+          fetch-depth: 1
+     
+      - name : Get weekly number and date 
+        run: |
+          echo "LSST_TAG=w_$(date "+%Y")_$(date "+%U")" >> $GITHUB_ENV
+          echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
+      - name: tag current weekly
+        run: |
+          docker pull lsstdesc/descwl-shear-sims:weekly-latest
+          docker run --rm lsstdesc/descwl-shear-sims:weekly-latest /bin/bash -c "source /opt/lsst/software/stack/loadLSST.bash"
+          if $?; then
+            echo "No functional descwl-shear-sims-latest with lsst_distrib available"
+          else
+            docker tag lsstdesc/descwl-shear-sims:weekly-latest lsstdesc/descwl-shear-sims:weekly
+            docker push lsstdesc/descwl-shear-sims:weekly
+          fi
+        #continue-on-error: true
+      - name: do docker build
+        run: docker build --no-cache --build-arg LSST_TAG=${{env.LSST_TAG}} -t lsstdesc/descwl-shear-sims:weekly-latest -f $GITHUB_WORKSPACE/Dockerfile . 
+      - name: test astropy
+        run: docker run --rm lsstdesc/descwl-shear-sims:weekly-latest /bin/bash -c "source /opt/lsst/software/stack/loadLSST.bash && setup lsst_distrib && python -c 'import astropy'"
+      - name: Docker push
+        run: docker push lsstdesc/descwl-shear-sims:weekly-latest
+      - name: tag versions
+        run: |
+          docker tag lsstdesc/descwl-shear-sims:weekly-latest lsstdesc/descwl-shear-sims:${{env.LSST_TAG}}-${{env.DATE_TAG}}
+          docker push lsstdesc/descwl-shear-sims:${{env.LSST_TAG}}-${{env.DATE_TAG}}
+          docker tag lsstdesc/descwl-shear-sims:weekly-latest lsstdesc/descwl-shear-sims:${{env.LSST_TAG}}
+          docker push lsstdesc/descwl-shear-sims:${{env.LSST_TAG}}
+  
+       
