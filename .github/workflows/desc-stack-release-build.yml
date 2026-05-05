@@ -41,7 +41,7 @@ jobs:
      
       - name : Set release and date 
         run: |
-          echo "LSST_TAG=${{ github.event.inputs.stack_tag }}"" >> $GITHUB_ENV
+          echo "LSST_TAG=${{ github.event.inputs.stack_tag }}" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
      # - name: tag current weekly
      #   run: |
