@@ -4,11 +4,16 @@ on:
   #schedule:
   #  - cron: '15 23 * * 6'
   workflow_dispatch:
+    inputs:
+      stack_tag:
+        description: 'LSST Science Pipelines tag'     
+        required: true
+        default: 'v29_2_1'
 
 jobs:
   build:
     name: Build on Ubuntu
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
@@ -36,7 +41,7 @@ jobs:
      
       - name : Set release and date 
         run: |
-          echo "LSST_TAG=v29_2_1" >> $GITHUB_ENV
+          echo "LSST_TAG=${{ github.event.inputs.stack_tag }}"" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
      # - name: tag current weekly
      #   run: |
