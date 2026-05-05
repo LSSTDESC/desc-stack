@@ -38,7 +38,7 @@ jobs:
         run: |
           echo "LSST_TAG=w_$(date "+%Y")_$(date "+%U")" >> $GITHUB_ENV
           echo "DATE_TAG=$(date "+%F")" >> $GITHUB_ENV
-      - name: tag current weekly
+     #HMK - name: tag current weekly
       #HMK  run: |
       #HMK    docker pull lsstdesc/descwl-shear-sims:weekly-latest
       #HMK    docker run --rm lsstdesc/descwl-shear-sims:weekly-latest /bin/bash -c "source /opt/lsst/software/stack/loadLSST.bash"
