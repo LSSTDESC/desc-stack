@@ -8,7 +8,7 @@ on:
       stack_tag:
         description: 'LSST Science Pipelines tag'     
         required: true
-        default: 'v29_2_1'
+        default: 'v30_0_9'
 
 jobs:
   build:
