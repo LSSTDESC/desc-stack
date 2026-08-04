@@ -9,6 +9,7 @@
  ipympl
  ipykernel 
  jupyter_console
+ lsdb
  lsstdesc-gcr-catalogs
  namaster
  nose
