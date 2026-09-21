@@ -1,5 +1,6 @@
  astroquery
  bokeh
+ clmm
  corner
  emcee
  # extinction incompatible with numpy2
