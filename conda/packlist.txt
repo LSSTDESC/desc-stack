@@ -20,4 +20,5 @@
  pyccl
  pymssql
  rubin_sim
+ rustfits
  sacc
